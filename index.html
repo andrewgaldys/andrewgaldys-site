@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andrew Galdys | Market Commentary</title>
+  <meta name="description" content="Daily market commentary and weekly outlooks from Andrew Galdys." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top">Andrew Galdys</a>
+      <nav>
+        <a href="#latest">Latest</a>
+        <a href="#weekly">Weekly Outlooks</a>
+        <a href="#about">About</a>
+        <a class="button button-small" id="substack-link-nav" href="#" target="_blank" rel="noopener">Subscribe</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero container">
+      <p class="eyebrow">Market Commentary</p>
+      <h1>Daily market notes and weekly outlooks.</h1>
+      <p class="hero-copy">I write about macro trends, equities, geopolitics, and how markets are reacting in real time.</p>
+      <div class="hero-actions">
+        <a class="button" id="substack-link-hero" href="#" target="_blank" rel="noopener">Read on Substack</a>
+        <a class="button button-secondary" href="#latest">View Latest Posts</a>
+      </div>
+    </section>
+
+    <section class="container stats">
+      <div class="stat-card">
+        <span class="stat-label">Focus</span>
+        <strong>Macro, equities, and event-driven market moves</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Format</span>
+        <strong>Daily recaps and Sunday week-ahead outlooks</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Home Base</span>
+        <strong id="substack-name">Substack</strong>
+      </div>
+    </section>
+
+    <section id="latest" class="container section-block">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Latest</p>
+          <h2>Recent posts</h2>
+        </div>
+        <a class="text-link" id="archive-link-latest" href="#" target="_blank" rel="noopener">Full archive</a>
+      </div>
+      <div id="latest-grid" class="post-grid"></div>
+    </section>
+
+    <section id="weekly" class="container section-block">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Weekly Outlooks</p>
+          <h2>Week-ahead pieces</h2>
+        </div>
+      </div>
+      <div id="weekly-grid" class="post-grid"></div>
+    </section>
+
+    <section id="about" class="container about section-block">
+      <div>
+        <p class="section-kicker">About</p>
+        <h2>Who I am</h2>
+      </div>
+      <p>I am a student and investor writing consistently about markets, macro developments, and the narratives driving price action.</p>
+      <div class="about-links">
+        <a class="text-link" id="linkedin-link" href="#" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="text-link" id="substack-link-about" href="#" target="_blank" rel="noopener">Substack</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Andrew Galdys</p>
+      <a class="text-link" id="archive-link-footer" href="#" target="_blank" rel="noopener">View all posts</a>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
