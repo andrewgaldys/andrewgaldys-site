@@ -3,94 +3,136 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Andrew Galdys | Market Commentary</title>
-  <meta name="description" content="Daily market commentary and weekly outlooks from Andrew Galdys." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <title>Andrew Galdys</title>
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --text: #111111;
+      --muted: #5c5c5c;
+      --border: #d9d9d4;
+      --card: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 760px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px 32px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .headshot {
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 22px;
+      border: 1px solid var(--border);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      max-width: 560px;
+      margin: 16px auto 0;
+      font-size: 1.07rem;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.98rem;
+      transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+      min-width: 150px;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      background: var(--text);
+      color: #ffffff;
+    }
+
+    .button-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    @media (max-width: 640px) {
+      .card {
+        padding: 32px 22px;
+        border-radius: 20px;
+      }
+
+      .headshot {
+        width: 112px;
+        height: 112px;
+        margin-bottom: 18px;
+      }
+
+      .subtitle {
+        font-size: 1rem;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="#top">Andrew Galdys</a>
-      <nav>
-        <a href="#latest">Latest</a>
-        <a href="#weekly">Weekly Outlooks</a>
-        <a href="#about">About</a>
-        <a class="button button-small" id="substack-link-nav" href="#" target="_blank" rel="noopener">Subscribe</a>
-      </nav>
+  <main class="card">
+    <img class="headshot" src="headshot.jpg" alt="Andrew Galdys headshot" />
+    <h1>Andrew Galdys</h1>
+    <p class="subtitle">Economics student and investor writing consistently about macro trends, equities, and global events.</p>
+    <div class="button-row">
+      <a class="button button-primary" href="https://substack.com/@drewgaldys/posts" target="_blank" rel="noopener noreferrer">Subscribe</a>
+      <a class="button button-secondary" href="https://www.linkedin.com/in/andrewgaldys/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </div>
-  </header>
-
-  <main id="top">
-    <section class="hero container">
-      <p class="eyebrow">Market Commentary</p>
-      <h1>Daily market notes and weekly outlooks.</h1>
-      <p class="hero-copy">I write about macro trends, equities, geopolitics, and how markets are reacting in real time.</p>
-      <div class="hero-actions">
-        <a class="button" id="substack-link-hero" href="#" target="_blank" rel="noopener">Read on Substack</a>
-        <a class="button button-secondary" href="#latest">View Latest Posts</a>
-      </div>
-    </section>
-
-    <section class="container stats">
-      <div class="stat-card">
-        <span class="stat-label">Focus</span>
-        <strong>Macro, equities, and event-driven market moves</strong>
-      </div>
-      <div class="stat-card">
-        <span class="stat-label">Format</span>
-        <strong>Daily recaps and Sunday week-ahead outlooks</strong>
-      </div>
-      <div class="stat-card">
-        <span class="stat-label">Home Base</span>
-        <strong id="substack-name">Substack</strong>
-      </div>
-    </section>
-
-    <section id="latest" class="container section-block">
-      <div class="section-heading">
-        <div>
-          <p class="section-kicker">Latest</p>
-          <h2>Recent posts</h2>
-        </div>
-        <a class="text-link" id="archive-link-latest" href="#" target="_blank" rel="noopener">Full archive</a>
-      </div>
-      <div id="latest-grid" class="post-grid"></div>
-    </section>
-
-    <section id="weekly" class="container section-block">
-      <div class="section-heading">
-        <div>
-          <p class="section-kicker">Weekly Outlooks</p>
-          <h2>Week-ahead pieces</h2>
-        </div>
-      </div>
-      <div id="weekly-grid" class="post-grid"></div>
-    </section>
-
-    <section id="about" class="container about section-block">
-      <div>
-        <p class="section-kicker">About</p>
-        <h2>Who I am</h2>
-      </div>
-      <p>I am a student and investor writing consistently about markets, macro developments, and the narratives driving price action.</p>
-      <div class="about-links">
-        <a class="text-link" id="linkedin-link" href="#" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="text-link" id="substack-link-about" href="#" target="_blank" rel="noopener">Substack</a>
-      </div>
-    </section>
   </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© <span id="year"></span> Andrew Galdys</p>
-      <a class="text-link" id="archive-link-footer" href="#" target="_blank" rel="noopener">View all posts</a>
-    </div>
-  </footer>
-
-  <script src="config.js"></script>
-  <script src="script.js"></script>
 </body>
 </html>
+
