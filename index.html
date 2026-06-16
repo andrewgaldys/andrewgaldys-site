@@ -1,170 +1,251 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Andrew Galdys</title>
-  <style>
-    :root {
-      --bg: #070d18;
-      --bg-soft: #0a1324;
-      --text: #f4efe4;
-      --muted: #cfc6b4;
-      --border: rgba(244, 239, 228, 0.12);
-      --primary-bg: #f4efe4;
-      --primary-text: #0c172a;
-      --secondary-text: #f4efe4;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew Galdys | Build Wealth & Invest Smarter</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        electric: '#00FF66', // Vibrant, sharp electric green
+                        slate: {
+                            950: '#0B0F19', // Deep neutral background
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      background: linear-gradient(135deg, var(--bg) 0%, var(--bg-soft) 100%);
-      color: var(--text);
-      font-family: Garamond, Baskerville, Georgia, serif;
-    }
-
-    .hero {
-      width: 100%;
-      max-width: 980px;
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      align-items: center;
-      gap: 36px;
-    }
-
-    .image-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .headshot {
-      width: 280px;
-      height: 280px;
-      object-fit: cover;
-      object-position: center 40%;
-      border-radius: 18px;
-      display: block;
-      transform: scale(1.04);
-    }
-
-    .content {
-      text-align: left;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
-      line-height: 1;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-    }
-
-    .description {
-      margin: 18px 0 0;
-      max-width: 560px;
-      font-size: 1.14rem;
-      line-height: 1.7;
-      color: var(--muted);
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 150px;
-      padding: 14px 26px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease, border-color 0.15s ease;
-      font-family: Garamond, Baskerville, Georgia, serif;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-      opacity: 0.97;
-    }
-
-    .button-primary {
-      background: var(--primary-bg);
-      color: var(--primary-text);
-      border: 1px solid rgba(244, 239, 228, 0.15);
-    }
-
-    .button-secondary {
-      background: transparent;
-      color: var(--secondary-text);
-      border: 1px solid var(--border);
-    }
-
-    .button-secondary:hover {
-      background: rgba(255, 255, 255, 0.04);
-      border-color: rgba(244, 239, 228, 0.28);
-    }
-
-    @media (max-width: 820px) {
-      .hero {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .content {
-        text-align: center;
-      }
-
-      .description {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .actions {
-        justify-content: center;
-      }
-
-      .headshot {
-        width: 230px;
-        height: 230px;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .button {
-        width: 100%;
-      }
-    }
-  </style>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+    </style>
 </head>
-<body>
-  <main class="hero">
-    <div class="image-wrap">
-      <img src="headshot.jpg" alt="Andrew Galdys headshot" class="headshot" />
-    </div>
-    <div class="content">
-      <h1>Andrew Galdys</h1>
-      <p class="description">Economics student and investor writing about macro trends, equities, and global events.</p>
-      <div class="actions">
-        <a class="button button-primary" href="https://substack.com/@drewgaldys/posts" target="_blank" rel="noopener noreferrer">Read</a>
-        <a class="button button-secondary" href="https://www.linkedin.com/in/andrewgaldys/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      </div>
-    </div>
-  </main>
+<body class="bg-slate-950 text-slate-200 font-sans antialiased selection:bg-electric selection:text-slate-950">
+
+    <header class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/50">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-white font-bold text-xl tracking-tight hover:text-electric transition-colors">
+                Andrew Galdys
+            </a>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#home" class="text-slate-400 hover:text-white transition-colors">Home</a>
+                <a href="#about" class="text-slate-400 hover:text-white transition-colors">About</a>
+                <a href="#tools" class="text-slate-400 hover:text-white transition-colors">Tools</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="home">
+        <section id="hero-section" class="relative max-w-4xl mx-auto px-6 py-24 md:py-32 flex flex-col items-center text-center min-h-[80vh] justify-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6">
+                Build Wealth, Invest Smarter, and <span class="text-transparent bg-clip-text bg-gradient-to-r from-electric to-green-400">Design Financial Freedom.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mb-12 leading-relaxed">
+                Get my free 15-minute Investing 101 video training and join my weekly newsletter where I break down my exact personal finance strategies and real estate journey.
+            </p>
+            
+            <form id="optin-form" class="w-full max-w-md flex flex-col sm:flex-row gap-3">
+                <input 
+                    type="email" 
+                    id="email" 
+                    placeholder="Enter your best email..." 
+                    class="flex-1 bg-slate-900 border border-slate-700 text-white px-5 py-4 rounded-lg focus:outline-none focus:border-electric focus:ring-1 focus:ring-electric transition-all"
+                    required
+                >
+                <button 
+                    type="submit" 
+                    class="bg-electric text-slate-950 font-bold px-8 py-4 rounded-lg hover:bg-[#00E65C] hover:shadow-[0_0_20px_rgba(0,255,102,0.3)] transition-all duration-300 whitespace-nowrap">
+                    Get Instant Access
+                </button>
+            </form>
+            <p class="text-xs text-slate-600 mt-4">100% Free. No spam. Unsubscribe anytime.</p>
+        </section>
+
+        <section id="video-section" class="hidden max-w-5xl mx-auto px-6 py-16 md:py-24 animate-fade-in">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Your Free Investing 101 Video is Below!</h2>
+                <p class="text-slate-400">Make sure to check your inbox for the welcome email and additional resources.</p>
+            </div>
+
+            <div class="aspect-[16/9] w-full bg-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-slate-800 mb-20 relative group">
+                <div class="absolute inset-0 flex items-center justify-center text-slate-600">
+                    <svg class="w-16 h-16 opacity-50 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                    <span class="absolute mt-24 text-sm font-medium tracking-widest uppercase text-slate-500">Video Embed Placeholder</span>
+                </div>
+                <iframe 
+                    class="absolute top-0 left-0 w-full h-full" 
+                    src="" 
+                    title="Investing 101 Video" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div id="tools" class="pt-8">
+                <h3 class="text-2xl font-bold text-white mb-8 border-b border-slate-800 pb-4 inline-block">Tools I Use Daily</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <a href="#" class="group block bg-slate-900 border border-slate-800 p-8 rounded-xl hover:scale-[1.02] hover:border-electric/50 transition-all duration-300 shadow-lg">
+                        <div class="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center mb-6 text-electric group-hover:bg-electric/10 transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-electric transition-colors">Favorite Brokerage</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">The exact platform I use to automate my index fund investing and manage my stock portfolio with zero fees.</p>
+                    </a>
+
+                    <a href="#" class="group block bg-slate-900 border border-slate-800 p-8 rounded-xl hover:scale-[1.02] hover:border-electric/50 transition-all duration-300 shadow-lg">
+                        <div class="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center mb-6 text-electric group-hover:bg-electric/10 transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-electric transition-colors">Top Financial Books</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">My curated reading list for understanding macroeconomics, real estate syndication, and building generational wealth.</p>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="border-t border-slate-800/50 bg-slate-900/30">
+            <div class="max-w-4xl mx-auto px-6 py-24">
+                <div class="flex flex-col md:flex-row gap-12 items-center">
+                    <div class="w-32 h-32 md:w-48 md:h-48 rounded-full bg-slate-800 border-2 border-slate-700 shrink-0 overflow-hidden shadow-xl">
+                        <div class="w-full h-full flex items-center justify-center text-slate-600 text-sm font-medium">Headshot</div>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-white mb-6">About Andrew</h2>
+                        <div class="space-y-4 text-slate-400 leading-relaxed">
+                            <p>I’m an economics student and real estate professional obsessed with reverse-engineering wealth creation. I believe financial freedom isn't about getting lucky; it's about systems, discipline, and understanding how money actually works.</p>
+                            <p>I’m building my portfolio and multiple income streams in public. Through my newsletter and videos, I share the raw, unfiltered realities of investing, market analysis, and the exact steps I'm taking to reach my financial goals.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-950 border-t border-slate-900 py-12">
+        <div class="max-w-6xl mx-auto px-6 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
+            <p class="text-slate-400 font-medium">© <span id="year"></span> Andrew Galdys. All rights reserved.</p>
+            
+            <div class="flex space-x-6">
+                <a href="#" class="text-slate-500 hover:text-electric transition-colors">Twitter / X</a>
+                <a href="#" class="text-slate-500 hover:text-electric transition-colors">YouTube</a>
+                <a href="#" class="text-slate-500 hover:text-electric transition-colors">LinkedIn</a>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-6 space-y-4">
+            <p class="text-xs text-slate-500 leading-relaxed">
+                Disclaimer: I am not a financial advisor. All content on this website and my digital platforms is for educational and entertainment purposes only. Investing involves risk, and you should always do your own research or consult a licensed professional before making financial decisions.
+            </p>
+            <p class="text-xs text-slate-500 leading-relaxed">
+                Disclosure: Some of the links on this site are affiliate/referral links, meaning, at no additional cost to you, I may earn a commission or bonus if you click through and sign up or make a purchase.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set dynamic year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            const form = document.getElementById('optin-form');
+            const emailInput = document.getElementById('email');
+            const heroSection = document.getElementById('hero-section');
+            const videoSection = document.getElementById('video-section');
+
+            form.addEventListener('submit', async (e) => {
+                // 1. Prevent default page reload
+                e.preventDefault();
+
+                // 2. Validate email is not empty
+                const emailValue = emailInput.value.trim();
+                if (!emailValue) {
+                    // Modern HTML5 handles this natively via the 'required' attribute, 
+                    // but providing a fallback JS validation is good practice.
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+
+                // ==========================================
+                // API INTEGRATION TEMPLATE (ConvertKit / MailerLite)
+                // ==========================================
+                /*
+                // Define your API endpoint here
+                const API_URL = 'YOUR_EMAIL_PROVIDER_API_ENDPOINT';
+                
+                try {
+                    // Update button state to loading (optional UX improvement)
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.textContent;
+                    submitBtn.textContent = 'Processing...';
+                    submitBtn.disabled = true;
+
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            // Add Authorization headers here if required by the API
+                        },
+                        body: JSON.stringify({ 
+                            email: emailValue 
+                            // Add any specific grouping/tagging IDs needed by the provider
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    
+                    // Reset button state (if needed for re-submission logic)
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+
+                } catch (error) {
+                    console.error('Submission Error:', error);
+                    alert('There was an issue subscribing. Please try again.');
+                    // In a production environment, you might want to stop the flow here 
+                    // if the API call fails. For this funnel demo, we will proceed.
+                    // return; 
+                }
+                */
+                // ==========================================
+
+                // 3. Hide Hero Section completely
+                heroSection.classList.add('hidden');
+
+                // 4. Reveal the Video & Tools section
+                videoSection.classList.remove('hidden');
+
+                // 5. Smoothly scroll back to the top of the viewport
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
