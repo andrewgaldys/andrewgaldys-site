@@ -5,8 +5,6 @@
       "source": "/api/subscribe",
       "destination": "/api/subscribe.js"
     }
-  ]
-}
-{
+  ],
   "cleanUrls": true
 }
