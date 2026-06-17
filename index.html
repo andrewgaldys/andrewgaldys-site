@@ -4,145 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andrew Galdys</title>
-    
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        background: '#090D16',
-                        link: '#3b82f6', // Standard crisp blue for links
-                    },
-                    fontFamily: {
-                        serif: ['ui-serif', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="bg-background text-slate-200 font-serif antialiased selection:bg-link selection:text-white">
-
-    <main class="max-w-2xl mx-auto px-4 py-16 md:py-24">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
         
-        <header class="mb-10 text-lg leading-relaxed">
-            <h1 class="text-3xl font-bold text-white mb-6">Andrew Galdys</h1>
-            <p>
-                I am an economics student and real estate professional building multiple income streams in public. I write a weekly newsletter breaking down my personal finance strategies.
-            </p>
-        </header>
+        body {
+            font-family: 'Newsreader', serif;
+            background-color: #fcfbf9;
+            color: #1c1b1a;
+        }
+        .sans-serif {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-8 md:p-16 max-w-2xl mx-auto selection:bg-stone-200">
 
-        <div id="subscribe-container" class="mb-12">
-            <p class="mb-4 text-lg">Subscribe to the newsletter and get my 15-minute Investing 101 video guide:</p>
-            
-            <form id="optin-form" class="flex flex-col sm:flex-row gap-4 sm:items-baseline">
+    <header class="pt-12">
+        <h1 class="text-3xl font-medium tracking-tight">Andrew Galdys</h1>
+        <p class="sans-serif text-xs uppercase tracking-widest text-stone-400 mt-2">Economics & Investment Frameworks</p>
+    </header>
+
+    <main class="my-auto py-16 space-y-6 text-lg leading-relaxed md:text-xl font-normal">
+        <p>
+            Most modern personal finance advice is optimization theater. People argue over optimization metrics while missing the structural base: a high savings rate routed ruthlessly into low-fee capital allocation models.
+        </p>
+        <p>
+            I am building multiple non-linear passive income streams in the open. Every single week, I send a clean, text-first breakdown detailing the exact frameworks I use to scale capital, manage investment infrastructure, and navigate macroeconomic real estate trends.
+        </p>
+        <p class="italic text-stone-600">
+            Enter your email below to receive my 15-minute Investing 101 video blueprint, alongside the weekly newsletter dispatch.
+        </p>
+
+        <div class="pt-8 min-h-[80px]">
+            <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 w-full max-w-md transition-opacity duration-300">
                 <input 
                     type="email" 
-                    id="email" 
-                    placeholder="email@example.com" 
-                    class="bg-transparent border border-slate-600 text-white px-3 py-1.5 focus:outline-none focus:border-link font-sans text-sm w-full sm:w-64"
+                    id="email-input"
+                    placeholder="name@email.com" 
                     required
+                    class="sans-serif text-sm px-4 py-3 bg-transparent border border-stone-300 rounded-none focus:outline-none focus:border-stone-900 flex-grow transition-colors"
                 >
                 <button 
-                    type="submit" 
-                    class="text-link hover:underline font-bold text-base bg-transparent border-none cursor-pointer p-0 text-left whitespace-nowrap">
-                    [ Subscribe ]
+                    type="submit"
+                    id="submit-button"
+                    class="sans-serif text-xs font-semibold uppercase tracking-wider bg-stone-900 text-stone-50 px-6 py-3 hover:bg-stone-800 transition-colors rounded-none"
+                >
+                    Access Blueprint
                 </button>
             </form>
-        </div>
 
-        <div id="hidden-content" class="hidden mb-12">
-            <h2 class="text-xl font-bold text-white mb-6">Investing 101 Video & Daily Tools</h2>
-            
-            <div class="aspect-video w-full border border-slate-800 bg-black mb-8 relative">
-                <iframe 
-                    class="absolute top-0 left-0 w-full h-full" 
-                    src="" 
-                    title="Investing 101 Video Guide" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-                <div class="absolute inset-0 flex items-center justify-center text-slate-700 text-sm -z-10">
-                    [ Video Player Embed ]
-                </div>
-            </div>
-
-            <ul class="list-disc pl-6 space-y-3 text-lg">
-                <li>Brokerage: <a href="#" class="text-link hover:underline">Vanguard / Fidelity</a> — Where I invest my capital (referral link)</li>
-                <li>Budgeting: <a href="#" class="text-link hover:underline">YNAB</a> — The tool I use to allocate every dollar (referral link)</li>
-                <li>Reading: <a href="#" class="text-link hover:underline">The Simple Path to Wealth</a> — Required reading for financial independence</li>
-            </ul>
-        </div>
-
-        <footer>
-            <hr class="border-slate-800 my-8">
-            <div class="space-y-4">
-                <p class="text-xs text-slate-500 font-sans leading-relaxed">
-                    Disclaimer: I am not a financial advisor. All content on this website and my digital platforms is for educational and entertainment purposes only. Investing involves risk, and you should always do your own research or consult a licensed professional before making financial decisions.
-                </p>
-                <p class="text-xs text-slate-500 font-sans leading-relaxed">
-                    Disclosure: Some of the links on this site are affiliate/referral links, meaning, at no additional cost to you, I may earn a commission or bonus if you click through and sign up or make a purchase.
+            <div id="success-message" class="hidden flex items-start gap-3 max-w-md text-base leading-relaxed text-stone-700 transition-opacity duration-300 opacity-0">
+                <svg class="w-5 h-5 text-stone-900 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <p class="sans-serif text-sm font-normal">
+                    The video should arrive in your inbox within 5 minutes and be sure to check your spam.
                 </p>
             </div>
-        </footer>
-
+        </div>
     </main>
 
+    <footer class="border-t border-stone-200 pt-8 flex flex-col sm:flex-row gap-4 sm:gap-8 justify-between items-start sm:items-center sans-serif text-xs uppercase tracking-wider text-stone-500">
+        <div class="flex gap-6">
+            <a href="https://youtube.com/@andrewgaldys" target="_blank" class="hover:text-stone-900 transition-colors">YouTube</a>
+            <a href="#" class="hover:text-stone-900 transition-colors">Articles</a>
+        </div>
+        <p class="text-[10px] tracking-normal text-stone-400 font-normal normal-case">© 2026 Andrew Galdys. All rights reserved.</p>
+    </footer>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('optin-form');
-            const emailInput = document.getElementById('email');
-            const subscribeContainer = document.getElementById('subscribe-container');
-            const hiddenContent = document.getElementById('hidden-content');
-            const submitBtn = form.querySelector('button[type="submit"]');
+        document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const emailInput = document.getElementById('email-input');
+            const submitButton = document.getElementById('submit-button');
+            const form = document.getElementById('newsletter-form');
+            const successMessage = document.getElementById('success-message');
+            
+            const email = emailInput.value;
 
-            form.addEventListener('submit', async (e) => {
-                // Prevent default form submission behavior
-                e.preventDefault();
+            // Visual feedback: disable interface elements during processing
+            emailInput.disabled = true;
+            submitButton.disabled = true;
+            submitButton.innerText = "Processing...";
 
-                // Validate input
-                const email = emailInput.value.trim();
-                if (!email) return;
+            try {
+                // Point this exact URL path string to your serverless backend Vercel route
+                const response = await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email: email }),
+                });
 
-                // Provide clear visual feedback in line with editorial design philosophy
-                const originalText = submitBtn.textContent;
-                submitBtn.textContent = '[ Sending... ]';
-                submitBtn.disabled = true;
-
-                try {
-                    // Call the relative route handled by your Vercel Serverless Function inside api/subscribe.js
-                    const response = await fetch('/api/subscribe', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ email: email })
-                    });
-
-                    const result = await response.json();
-
-                    if (!response.ok) {
-                        throw new Error(result.error || 'Server error');
-                    }
+                if (response.ok) {
+                    // Transition State: Fade out the form container cleanly
+                    form.classList.add('opacity-0');
                     
-                    // On success: Hide the inline input container and instantly reveal the layout content
-                    subscribeContainer.classList.add('hidden');
-                    hiddenContent.classList.remove('hidden');
-
-                } catch (error) {
-                    console.error('Subscription error:', error);
-                    alert(error.message || 'There was an error submitting your email. Please try again.');
+                    setTimeout(() => {
+                        form.classList.add('hidden');
+                        
+                        // Transition State: Unhide and fade in the editorial success text
+                        successMessage.classList.remove('hidden');
+                        setTimeout(() => {
+                            successMessage.classList.remove('opacity-0');
+                        }, 50);
+                    }, 300);
                     
-                    // Reset text link trigger state if the transmission fails
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
+                } else {
+                    // Fail-safe handling for network errors
+                    alert('An error occurred. Please refresh and try again.');
+                    resetForm();
                 }
-            });
+            } catch (error) {
+                console.error('Submission Error:', error);
+                alert('Connection failure. Please try again.');
+                resetForm();
+            }
+
+            function resetForm() {
+                emailInput.disabled = false;
+                submitButton.disabled = false;
+                submitButton.innerText = "Access Blueprint";
+            }
         });
     </script>
-
 </body>
 </html>
