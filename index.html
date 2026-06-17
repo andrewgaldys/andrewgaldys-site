@@ -47,7 +47,7 @@
                 >
                 <button 
                     type="submit" 
-                    class="text-link hover:underline font-bold text-base bg-transparent border-none cursor-pointer p-0 text-left">
+                    class="text-link hover:underline font-bold text-base bg-transparent border-none cursor-pointer p-0 text-left whitespace-nowrap">
                     [ Subscribe ]
                 </button>
             </form>
@@ -97,6 +97,7 @@
             const emailInput = document.getElementById('email');
             const subscribeContainer = document.getElementById('subscribe-container');
             const hiddenContent = document.getElementById('hidden-content');
+            const submitBtn = form.querySelector('button[type="submit"]');
 
             form.addEventListener('submit', async (e) => {
                 // Prevent default form submission behavior
@@ -106,43 +107,39 @@
                 const email = emailInput.value.trim();
                 if (!email) return;
 
-                /*
-                // ==========================================
-                // API FETCH REQUEST TEMPLATE (ConvertKit / MailerLite)
-                // ==========================================
-                
-                const API_ENDPOINT = 'YOUR_API_ENDPOINT_URL';
-                
+                // Provide clear visual feedback in line with editorial design philosophy
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = '[ Sending... ]';
+                submitBtn.disabled = true;
+
                 try {
-                    const response = await fetch(API_ENDPOINT, {
+                    // Call the relative route handled by your Vercel Serverless Function inside api/subscribe.js
+                    const response = await fetch('/api/subscribe', {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/json',
-                            // 'Authorization': 'Bearer YOUR_API_KEY' // if required
+                            'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({ 
-                            email: email 
-                            // Add additional fields as required by your provider
-                        })
+                        body: JSON.stringify({ email: email })
                     });
 
-                    if (!response.ok) throw new Error('API Request Failed');
+                    const result = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(result.error || 'Server error');
+                    }
                     
-                    // Success handled below
+                    // On success: Hide the inline input container and instantly reveal the layout content
+                    subscribeContainer.classList.add('hidden');
+                    hiddenContent.classList.remove('hidden');
+
                 } catch (error) {
                     console.error('Subscription error:', error);
-                    alert('There was an error submitting your email. Please try again.');
-                    return; // Stop execution on error
+                    alert(error.message || 'There was an error submitting your email. Please try again.');
+                    
+                    // Reset text link trigger state if the transmission fails
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
                 }
-                // ==========================================
-                */
-
-                // State mutation on successful submission
-                // 1. Hide the inline email form container
-                subscribeContainer.classList.add('hidden');
-                
-                // 2. Instantly display the video block and bulleted links
-                hiddenContent.classList.remove('hidden');
             });
         });
     </script>
