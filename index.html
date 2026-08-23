@@ -1,149 +1,89 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrew Galdys</title>
-    <link rel="icon" type="image/jpeg" href="/headshot.jpg">
+    <title>Andrew Galdys | Commercial Real Estate Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
-        
-        body {
-            font-family: 'Newsreader', serif;
-            background-color: #fcfbf9;
-            color: #1c1b1a;
-        }
-        .sans-serif {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-    </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between p-8 md:p-16 max-w-2xl mx-auto selection:bg-stone-200">
-
-    <header class="pt-12 flex items-center gap-4">
-        <img 
-            src="/headshot.jpg" 
-            alt="Andrew Galdys" 
-            class="w-14 h-14 rounded-full object-cover border border-stone-200/60 shadow-sm"
-        >
-        <div>
-            <h1 class="text-3xl font-medium tracking-tight">Andrew Galdys</h1>
-            <p class="sans-serif text-xs uppercase tracking-widest text-stone-400 mt-0.5">Investing & Personal Finance</p>
-        </div>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased">
+    
+    <!-- Header -->
+    <header class="max-w-5xl mx-auto py-10 px-6 border-b border-slate-200">
+        <h1 class="text-3xl font-bold tracking-tight text-slate-900">Andrew Galdys</h1>
+        <p class="text-lg text-slate-600 mt-2">Commercial Real Estate Portfolio | Underwriting & Analysis</p>
     </header>
 
-    <main class="my-auto py-16 space-y-6 text-lg leading-relaxed md:text-xl font-normal">
-        <p>
-            Most personal finance advice is more complicated than it needs to be. People debate minor details while missing the basics: keeping your expenses low and putting the difference into low-cost index funds.
-        </p>
-        <p>
-            I work in real estate and study economics, and I'm building my own long-term streams of income. Every week, I send an email sharing what I'm learning about real estate, market trends, and the exact steps I'm taking to grow my money.
-        </p>
-        <p class="italic text-stone-600">
-            Enter your email below to receive my free Investing 101 guide, alongside the weekly newsletter dispatch.
-        </p>
-
-        <div class="pt-8 min-h-[80px]">
-            <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 w-full max-w-md transition-opacity duration-300">
-                <input 
-                    type="email" 
-                    id="email-input"
-                    placeholder="name@email.com" 
-                    required
-                    class="sans-serif text-sm px-4 py-3 bg-transparent border border-stone-300 rounded-none focus:outline-none focus:border-stone-900 flex-grow transition-colors"
-                >
-                <button 
-                    type="submit"
-                    id="submit-button"
-                    class="sans-serif text-xs font-semibold uppercase tracking-wider bg-stone-900 text-stone-50 px-6 py-3 hover:bg-stone-800 transition-colors rounded-none"
-                >
-                    Join
-                </button>
-            </form>
-
-            <div id="success-message" class="hidden flex items-start gap-3 max-w-md text-base leading-relaxed text-stone-700 transition-opacity duration-300 opacity-0">
-                <svg class="w-5 h-5 text-stone-900 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <p class="sans-serif text-sm font-normal">
-                    The guide should arrive in your inbox within 5 minutes and be sure to check your spam.
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto py-12 px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+        
+        <!-- Left Column: Bio & Links -->
+        <div class="col-span-1 space-y-8">
+            <div>
+                <h2 class="text-xl font-semibold mb-3 border-b border-slate-200 pb-2">About Me</h2>
+                <p class="text-slate-600 leading-relaxed text-sm">
+                    Economics student at Florida Atlantic University with practical real estate internship experience, actively building skills in multifamily financial modeling and pro-forma underwriting. Focused on developing dynamic cash flow analysis, evaluating rent rolls, and structuring investment metrics.
                 </p>
             </div>
+            
+            <div>
+                <h2 class="text-xl font-semibold mb-3 border-b border-slate-200 pb-2">Contact & Links</h2>
+                <ul class="space-y-2 text-sm text-blue-700">
+                    <li><a href="https://www.linkedin.com/in/andrewgaldys/" target="_blank" class="hover:underline">LinkedIn Profile</a></li>
+                    <li><a href="mailto:your.email@example.com" class="hover:underline">Email Me</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Right Column: Deal Breakdowns & Models -->
+        <div class="col-span-1 md:col-span-2 space-y-10">
+            
+            <!-- Underwriting Models Section -->
+            <section>
+                <h2 class="text-2xl font-bold mb-6">Underwriting Models</h2>
+                
+                <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-semibold text-slate-800">120-Unit Multifamily Pro-Forma (Fort Lauderdale, FL)</h3>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Excel Model</span>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-4">
+                        Dynamic cash flow model evaluating a Class-B value-add acquisition. Includes T-12 analysis, rent roll auditing, agency debt assumptions (75% LTV, 3-yr IO), and waterfall equity distributions.
+                    </p>
+                    <a href="#" class="text-blue-700 hover:text-blue-900 text-sm font-medium flex items-center">
+                        Download Excel Model &rarr;
+                    </a>
+                </div>
+            </section>
+
+            <!-- Deal Breakdowns Section -->
+            <section>
+                <h2 class="text-2xl font-bold mb-6">Recent Deal Breakdowns</h2>
+                
+                <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-1">Off-Market Land Assembly (St. Lucie County)</h3>
+                    <div class="flex space-x-4 text-sm text-slate-500 mb-4 font-medium">
+                        <span>Price: $4.99M</span>
+                        <span>Size: 22 Acres</span>
+                        <span>Type: Development</span>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-4">
+                        Analysis of a 22-acre development site, outlining highest and best use, comparable land sales in the submarket, and potential owner financing structures.
+                    </p>
+                    <a href="#" class="text-blue-700 hover:text-blue-900 text-sm font-medium flex items-center">
+                        View 1-Page Summary (BOV) &rarr;
+                    </a>
+                </div>
+            </section>
+            
         </div>
     </main>
 
-    <footer class="border-t border-stone-200 pt-8 pb-12 flex flex-col gap-6 sans-serif">
-        <div class="flex justify-between items-center">
-            <a href="https://youtube.com/@mrgaldys" target="_blank" aria-label="YouTube" class="hover:text-stone-900 transition-colors flex items-center text-stone-500">
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
-            </a>
-        </div>
-        
-        <p class="text-[10px] text-stone-400 leading-relaxed font-normal normal-case max-w-3xl">
-            Disclaimer: I am not a registered financial advisor. The frameworks, data, and opinions shared on this site and in the weekly dispatch are for educational and informational purposes only. They should not be construed as professional financial advice. Always do your own research before making investment decisions.
-        </p>
+    <!-- Footer -->
+    <footer class="max-w-5xl mx-auto py-8 px-6 border-t border-slate-200 mt-12 text-center text-sm text-slate-500">
+        &copy; 2026 Andrew Galdys. Built for Institutional Real Estate Underwriting.
     </footer>
 
-    <script>
-        document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const emailInput = document.getElementById('email-input');
-            const submitButton = document.getElementById('submit-button');
-            const form = document.getElementById('newsletter-form');
-            const successMessage = document.getElementById('success-message');
-            
-            const email = emailInput.value;
-
-            // Visual feedback: disable interface elements during processing
-            emailInput.disabled = true;
-            submitButton.disabled = true;
-            submitButton.innerText = "Processing...";
-
-            try {
-                // Point this exact URL path string to your serverless backend Vercel route
-                const response = await fetch('/api/subscribe', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email: email }),
-                });
-
-                if (response.ok) {
-                    // Transition State: Fade out the form container cleanly
-                    form.classList.add('opacity-0');
-                    
-                    setTimeout(() => {
-                        form.classList.add('hidden');
-                        
-                        // Transition State: Unhide and fade in the editorial success text
-                        successMessage.classList.remove('hidden');
-                        setTimeout(() => {
-                            successMessage.classList.remove('opacity-0');
-                        }, 50);
-                    }, 300);
-                    
-                } else {
-                    // Fail-safe handling for network errors
-                    alert('An error occurred. Please refresh and try again.');
-                    resetForm();
-                }
-            } catch (error) {
-                console.error('Submission Error:', error);
-                alert('Connection failure. Please try again.');
-                resetForm();
-            }
-
-            function resetForm() {
-                emailInput.disabled = false;
-                submitButton.disabled = false;
-                submitButton.innerText = "Join";
-            }
-        });
-    </script>
 </body>
 </html>
