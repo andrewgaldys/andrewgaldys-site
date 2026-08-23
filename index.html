@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,52 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andrew Galdys | Commercial Real Estate Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: EB Garamond (Headings) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Apply the custom fonts */
+        h1, h2, h3, .font-serif {
+            font-family: 'EB Garamond', serif;
+        }
+        body, p, span, a, ul, .font-sans {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans antialiased">
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-slate-200">
     
     <!-- Header -->
-    <header class="max-w-5xl mx-auto py-10 px-6 border-b border-slate-200">
-        <h1 class="text-3xl font-bold tracking-tight text-slate-900">Andrew Galdys</h1>
-        <p class="text-lg text-slate-600 mt-2">Commercial Real Estate Portfolio | Underwriting & Analysis</p>
+    <header class="max-w-5xl mx-auto pt-16 pb-12 px-6 border-b border-slate-300">
+        <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 mb-2">Andrew Galdys</h1>
+        <p class="text-sm font-medium tracking-wide text-slate-500 uppercase font-sans mt-3">Commercial Real Estate Portfolio &middot; Underwriting & Analysis</p>
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-5xl mx-auto py-12 px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+    <main class="max-w-5xl mx-auto py-12 px-6 grid grid-cols-1 md:grid-cols-12 gap-12">
         
-        <!-- Left Column: Bio & Links -->
-        <div class="col-span-1 space-y-8">
+        <!-- Left Column: Bio, Links, Certifications -->
+        <div class="col-span-1 md:col-span-4 space-y-10">
+            
+            <!-- About Me -->
             <div>
-                <h2 class="text-xl font-semibold mb-3 border-b border-slate-200 pb-2">About Me</h2>
-                <p class="text-slate-600 leading-relaxed text-sm">
+                <h2 class="text-2xl font-semibold mb-4 text-slate-900">About</h2>
+                <p class="text-slate-600 leading-relaxed text-sm font-light">
                     Economics student at Florida Atlantic University with practical real estate internship experience, actively building skills in multifamily financial modeling and pro-forma underwriting. Focused on developing dynamic cash flow analysis, evaluating rent rolls, and structuring investment metrics.
                 </p>
             </div>
-            
+
+            <!-- Certifications (New Section) -->
             <div>
-                <h2 class="text-xl font-semibold mb-3 border-b border-slate-200 pb-2">Contact & Links</h2>
-                <ul class="space-y-2 text-sm text-blue-700">
-                    <li><a href="https://www.linkedin.com/in/andrewgaldys/" target="_blank" class="hover:underline">LinkedIn Profile</a></li>
-                    <li><a href="mailto:your.email@example.com" class="hover:underline">Email Me</a></li>
+                <h2 class="text-2xl font-semibold mb-4 text-slate-900">Certifications & Training</h2>
+                <ul class="space-y-3">
+                    <!-- Example: ARGUS (You can uncomment or edit this when you get it) -->
+                    <li class="border-l-2 border-slate-300 pl-3">
+                        <p class="text-sm font-medium text-slate-800">ARGUS Enterprise Certification</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Expected Fall 2026</p>
+                    </li>
+                    <!-- Example: REFM -->
+                    <li class="border-l-2 border-slate-300 pl-3">
+                        <p class="text-sm font-medium text-slate-800">Real Estate Financial Modeling (REFM)</p>
+                        <p class="text-xs text-slate-500 mt-0.5">In Progress &middot; Multifamily Valuations</p>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Contact -->
+            <div>
+                <h2 class="text-2xl font-semibold mb-4 text-slate-900">Connect</h2>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="https://www.linkedin.com/in/andrewgaldys/" target="_blank" class="text-slate-600 hover:text-slate-900 transition-colors">LinkedIn Profile &nearr;</a></li>
+                    <li><a href="mailto:andrew@example.com" class="text-slate-600 hover:text-slate-900 transition-colors">Email Me &nearr;</a></li>
                 </ul>
             </div>
         </div>
 
         <!-- Right Column: Deal Breakdowns & Models -->
-        <div class="col-span-1 md:col-span-2 space-y-10">
+        <div class="col-span-1 md:col-span-8 space-y-12">
             
             <!-- Underwriting Models Section -->
             <section>
-                <h2 class="text-2xl font-bold mb-6">Underwriting Models</h2>
+                <h2 class="text-3xl font-semibold mb-6 text-slate-900">Underwriting Models</h2>
                 
-                <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="text-lg font-semibold text-slate-800">120-Unit Multifamily Pro-Forma (Fort Lauderdale, FL)</h3>
-                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Excel Model</span>
+                <!-- Model Card -->
+                <div class="group bg-white border border-slate-200 rounded p-6 hover:border-slate-400 transition-all duration-200 shadow-sm">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-medium text-slate-900">120-Unit Multifamily Pro-Forma</h3>
+                        <span class="bg-slate-100 text-slate-600 text-xs font-medium px-2 py-1 rounded uppercase tracking-wider">Excel Model</span>
                     </div>
-                    <p class="text-slate-600 text-sm mb-4">
+                    <p class="text-sm text-slate-500 mb-2 font-medium">Fort Lauderdale, FL &middot; Class-B Value-Add</p>
+                    <p class="text-slate-600 text-sm mb-5 leading-relaxed font-light">
                         Dynamic cash flow model evaluating a Class-B value-add acquisition. Includes T-12 analysis, rent roll auditing, agency debt assumptions (75% LTV, 3-yr IO), and waterfall equity distributions.
                     </p>
-                    <a href="#" class="text-blue-700 hover:text-blue-900 text-sm font-medium flex items-center">
+                    <a href="#" class="inline-flex items-center text-sm font-medium text-slate-800 border-b border-slate-800 hover:text-slate-500 hover:border-slate-500 transition-colors pb-0.5">
                         Download Excel Model &rarr;
                     </a>
                 </div>
@@ -59,19 +95,26 @@
 
             <!-- Deal Breakdowns Section -->
             <section>
-                <h2 class="text-2xl font-bold mb-6">Recent Deal Breakdowns</h2>
+                <h2 class="text-3xl font-semibold mb-6 text-slate-900">Deal Breakdowns</h2>
                 
-                <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
-                    <h3 class="text-lg font-semibold text-slate-800 mb-1">Off-Market Land Assembly (St. Lucie County)</h3>
-                    <div class="flex space-x-4 text-sm text-slate-500 mb-4 font-medium">
-                        <span>Price: $4.99M</span>
-                        <span>Size: 22 Acres</span>
-                        <span>Type: Development</span>
+                <!-- Breakdown Card -->
+                <div class="group bg-white border border-slate-200 rounded p-6 hover:border-slate-400 transition-all duration-200 shadow-sm">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-medium text-slate-900">Off-Market Land Assembly</h3>
+                        <span class="bg-slate-100 text-slate-600 text-xs font-medium px-2 py-1 rounded uppercase tracking-wider">Development</span>
                     </div>
-                    <p class="text-slate-600 text-sm mb-4">
+                    
+                    <!-- Metrics Row -->
+                    <div class="flex space-x-6 text-sm text-slate-500 mb-4 font-medium border-y border-slate-100 py-2">
+                        <span><strong class="text-slate-700">Price:</strong> $4.99M</span>
+                        <span><strong class="text-slate-700">Size:</strong> 22 Acres</span>
+                        <span><strong class="text-slate-700">Location:</strong> St. Lucie County</span>
+                    </div>
+                    
+                    <p class="text-slate-600 text-sm mb-5 leading-relaxed font-light">
                         Analysis of a 22-acre development site, outlining highest and best use, comparable land sales in the submarket, and potential owner financing structures.
                     </p>
-                    <a href="#" class="text-blue-700 hover:text-blue-900 text-sm font-medium flex items-center">
+                    <a href="#" class="inline-flex items-center text-sm font-medium text-slate-800 border-b border-slate-800 hover:text-slate-500 hover:border-slate-500 transition-colors pb-0.5">
                         View 1-Page Summary (BOV) &rarr;
                     </a>
                 </div>
@@ -81,8 +124,9 @@
     </main>
 
     <!-- Footer -->
-    <footer class="max-w-5xl mx-auto py-8 px-6 border-t border-slate-200 mt-12 text-center text-sm text-slate-500">
-        &copy; 2026 Andrew Galdys. Built for Institutional Real Estate Underwriting.
+    <footer class="max-w-5xl mx-auto py-10 px-6 border-t border-slate-300 mt-16 flex justify-between items-center text-xs text-slate-500 font-sans">
+        <p>&copy; 2026 Andrew Galdys</p>
+        <p>Built for Institutional Real Estate Underwriting.</p>
     </footer>
 
 </body>
