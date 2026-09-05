@@ -1,102 +1,402 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrew Galdys | Commercial Real Estate Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: EB Garamond (Headings) & Inter (Body) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Apply the custom fonts */
-        h1, h2, h3, .font-serif {
-            font-family: 'EB Garamond', serif;
-        }
-        body, p, span, a, ul, .font-sans {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrew Galdys — Economics, Deal Breakdowns & Financial Modeling</title>
+<meta name="description" content="Personal research portfolio covering commercial real estate deal analysis, underwriting case studies, and financial modeling.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#000000',
+          paper: '#ffffff',
+          hairline: '#e5e5e5',
+          panel: '#f4f4f5',
+          muted: '#52525b',
+        },
+        fontFamily: {
+          serif: ['Newsreader', 'Georgia', 'serif'],
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+        },
+      },
+    },
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; }
+  .serif { font-family: 'Newsreader', Georgia, serif; }
+  a { text-underline-offset: 3px; }
+  ::selection { background: #000000; color: #ffffff; }
+  input:focus-visible, a:focus-visible, button:focus-visible {
+    outline: 2px solid #000000;
+    outline-offset: 3px;
+  }
+
+  /* Ambient grayscale blur shapes — the "something behind the glass" layer */
+  .ambient { position: fixed; inset: 0; z-index: -10; overflow: hidden; pointer-events: none; }
+  .ambient span {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(90px);
+    background: radial-gradient(circle at 30% 30%, rgba(0,0,0,0.10), rgba(0,0,0,0) 70%);
+  }
+  .ambient span:nth-child(1) { width: 620px; height: 620px; top: -120px; left: -160px; }
+  .ambient span:nth-child(2) { width: 520px; height: 520px; top: 30%; right: -180px;
+    background: radial-gradient(circle at 60% 40%, rgba(0,0,0,0.07), rgba(0,0,0,0) 70%); }
+  .ambient span:nth-child(3) { width: 460px; height: 460px; bottom: -140px; left: 20%;
+    background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.06), rgba(0,0,0,0) 70%); }
+
+  .glass {
+    background: rgba(255,255,255,0.62);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid rgba(0,0,0,0.09);
+  }
+  .glass-dark {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.16);
+  }
+
+  /* Nav active-state indicator */
+  .nav-link {
+    position: relative;
+    color: rgba(0,0,0,0.55);
+    padding-bottom: 6px;
+    transition: color 0.2s ease;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 100%; bottom: 0;
+    height: 2px;
+    background: #000000;
+    transition: right 0.25s ease;
+  }
+  .nav-link.active {
+    color: #000000;
+    font-weight: 600;
+  }
+  .nav-link.active::after { right: 0; }
+  .nav-link:hover { color: #000000; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition-duration: 0.001ms !important; }
+  }
+</style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-slate-200">
-    
-    <!-- Header -->
-    <header class="max-w-5xl mx-auto pt-16 pb-12 px-6 border-b border-slate-300 flex items-center space-x-6 md:space-x-8">
-        <!-- Headshot -->
-        <img src="image12345.jpg" alt="Andrew Galdys" class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover shadow-sm border border-slate-300 shrink-0">
-        
-        <!-- Name & Title -->
+<body class="bg-paper text-ink antialiased">
+
+  <div class="ambient" aria-hidden="true"><span></span><span></span><span></span></div>
+
+  <!-- Masthead (inverted) -->
+  <header class="bg-ink text-paper relative z-10">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 pt-16 pb-10 md:pt-24 md:pb-12">
+      <a href="#top" id="top" class="block">
+        <h1 class="serif font-bold text-6xl sm:text-7xl md:text-8xl leading-[0.95] tracking-tight">Andrew Galdys</h1>
+      </a>
+      <p class="mt-5 text-base md:text-lg text-white/65 max-w-xl font-medium">
+        Economics, Deal Breakdowns &amp; Financial Modeling
+      </p>
+    </div>
+  </header>
+
+  <!-- Sticky glass nav with active-state scrollspy -->
+  <div id="site-nav" class="sticky top-0 z-40 glass">
+    <nav class="max-w-6xl mx-auto px-6 md:px-10">
+      <ul class="flex flex-wrap gap-x-8 text-sm py-4">
+        <li><a href="#dispatches" data-nav class="nav-link">Deal Dispatches</a></li>
+        <li><a href="#models" data-nav class="nav-link">Case Studies &amp; Models</a></li>
+        <li><a href="#about" data-nav class="nav-link">About</a></li>
+        <li><a href="#contact" data-nav class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main class="relative z-10">
+
+    <!-- Hero: personal statement + featured dispatch -->
+    <section class="max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-32 grid md:grid-cols-[1.2fr_1fr] gap-12 md:gap-16 items-start">
+      <div>
+        <p class="serif font-semibold text-3xl sm:text-4xl md:text-[44px] leading-[1.35] tracking-tight">
+          I write to think clearly about how deals actually get underwritten —
+          where the assumptions live, where they break, and what the spreadsheet
+          doesn't tell you until you stress it.
+        </p>
+        <p class="mt-8 text-muted leading-relaxed max-w-md text-[15px]">
+          This is a working archive of deal analysis, underwriting frameworks, and the financial models
+          behind them — built in the open, for anyone who reads a rent roll for fun.
+        </p>
+      </div>
+
+      <div class="glass rounded-2xl p-6 md:p-8 flex flex-col justify-between shadow-[0_1px_24px_rgba(0,0,0,0.06)]">
         <div>
-            <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 mb-2">Andrew Galdys</h1>
-            <p class="text-sm font-medium tracking-wide text-slate-500 uppercase font-sans mt-2 md:mt-3">Commercial Real Estate Portfolio &middot; Underwriting & Analysis</p>
+          <p class="text-xs font-semibold tracking-wide text-muted mb-3">Latest dispatch</p>
+          <h2 class="serif font-medium text-2xl md:text-[26px] leading-tight">
+            A Sun Belt Multifamily Deal That Only Pencils on Year-Three Refinance
+          </h2>
+          <p class="mt-3 text-xs font-medium text-muted">March 2, 2026 &nbsp;·&nbsp; Phoenix, AZ &nbsp;·&nbsp; Multifamily</p>
+          <p class="mt-4 text-[15px] leading-relaxed text-black/80">
+            A closer look at a 220-unit value-add acquisition where the going-in cap rate looks fine
+            until you separate the return that comes from operations versus the return baked into a
+            rate cut nobody can promise.
+          </p>
         </div>
-    </header>
+        <a href="#dispatches" class="mt-6 inline-block text-sm font-semibold border-b-2 border-ink pb-0.5 w-fit hover:opacity-60">
+          Read the full analysis
+        </a>
+      </div>
+    </section>
 
-    <!-- Main Content -->
-    <main class="max-w-5xl mx-auto py-12 px-6 grid grid-cols-1 md:grid-cols-12 gap-12">
-        
-        <!-- Left Column: Bio, Links, Certifications -->
-        <div class="col-span-1 md:col-span-4 space-y-10">
-            
-            <!-- About Me -->
-            <div>
-                <h2 class="text-2xl font-semibold mb-4 text-slate-900">About</h2>
-                <p class="text-slate-600 leading-relaxed text-sm font-light">
-                    Finance student at Florida Atlantic University with practical real estate internship experience, actively building skills in multifamily financial modeling and pro-forma underwriting. Focused on developing dynamic cash flow analysis, evaluating rent rolls, and structuring investment metrics.
-                </p>
-            </div>
+    <!-- Deal Dispatches -->
+    <section id="dispatches" class="max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-24 scroll-mt-20">
+      <div class="flex items-baseline justify-between gap-4 mb-10 md:mb-14">
+        <h2 class="serif font-semibold text-3xl md:text-5xl tracking-tight">Deal Dispatches</h2>
+        <p class="text-sm text-muted hidden sm:block font-medium">Write-ups on live and closed deals</p>
+      </div>
 
-            <!-- Certifications (New Section) -->
-            <div>
-                <h2 class="text-2xl font-semibold mb-4 text-slate-900">Certifications & Training</h2>
-                <ul class="space-y-3">
-                    <!-- Example: ARGUS -->
-                    <li class="border-l-2 border-slate-300 pl-3">
-                        <p class="text-sm font-medium text-slate-800">ARGUS Enterprise Certification</p>
-                        <p class="text-xs text-slate-500 mt-0.5">Expected Fall 2026</p>
-                    </li>
-                    <!-- Example: REFM -->
-                    <li class="border-l-2 border-slate-300 pl-3">
-                        <p class="text-sm font-medium text-slate-800">Real Estate Financial Modeling (REFM)</p>
-                        <p class="text-xs text-slate-500 mt-0.5">In Progress &middot; Multifamily Valuations</p>
-                    </li>
-                </ul>
-            </div>
-            
-            <!-- Contact -->
-            <div>
-                <h2 class="text-2xl font-semibold mb-4 text-slate-900">Connect</h2>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="https://www.linkedin.com/in/andrewgaldys/" target="_blank" class="text-slate-600 hover:text-slate-900 transition-colors">LinkedIn Profile &nearr;</a></li>
-                    <li><a href="mailto:andrewgaldys.inbox@gmail.com" class="text-slate-600 hover:text-slate-900 transition-colors">Email Me &nearr;</a></li>
-                </ul>
-            </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <article class="glass rounded-2xl p-6 md:p-7 flex flex-col shadow-[0_1px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_28px_rgba(0,0,0,0.09)] transition-shadow">
+          <p class="text-xs font-semibold tracking-wide text-muted uppercase">Multifamily</p>
+          <p class="text-xs text-muted mt-1">March 2, 2026 &nbsp;·&nbsp; Phoenix, AZ</p>
+          <h3 class="serif font-medium text-xl md:text-2xl mt-3 leading-snug">
+            A Sun Belt Multifamily Deal That Only Pencils on Year-Three Refinance
+          </h3>
+          <p class="mt-3 text-[15px] leading-relaxed text-black/75 flex-1">
+            Separating operational upside from rate-dependent upside in a 220-unit value-add
+            acquisition, and what happens to equity returns if the refinance never comes.
+          </p>
+          <a href="#" class="mt-4 inline-block text-sm font-semibold border-b-2 border-ink pb-0.5 w-fit hover:opacity-60">Read analysis</a>
+        </article>
+
+        <article class="glass rounded-2xl p-6 md:p-7 flex flex-col shadow-[0_1px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_28px_rgba(0,0,0,0.09)] transition-shadow">
+          <p class="text-xs font-semibold tracking-wide text-muted uppercase">Industrial</p>
+          <p class="text-xs text-muted mt-1">February 14, 2026 &nbsp;·&nbsp; Columbus, OH</p>
+          <h3 class="serif font-medium text-xl md:text-2xl mt-3 leading-snug">
+            The Sale-Leaseback That Priced Like a Credit Deal, Not a Real Estate Deal
+          </h3>
+          <p class="mt-3 text-[15px] leading-relaxed text-black/75 flex-1">
+            How tenant credit quality compressed the cap rate on a single-tenant industrial
+            sale-leaseback well below comparable vacant-building pricing in the same submarket.
+          </p>
+          <a href="#" class="mt-4 inline-block text-sm font-semibold border-b-2 border-ink pb-0.5 w-fit hover:opacity-60">Read analysis</a>
+        </article>
+
+        <article class="glass rounded-2xl p-6 md:p-7 flex flex-col shadow-[0_1px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_28px_rgba(0,0,0,0.09)] transition-shadow">
+          <p class="text-xs font-semibold tracking-wide text-muted uppercase">Office</p>
+          <p class="text-xs text-muted mt-1">January 22, 2026 &nbsp;·&nbsp; Chicago, IL</p>
+          <h3 class="serif font-medium text-xl md:text-2xl mt-3 leading-snug">
+            What an Office-to-Residential Conversion Actually Costs Per Unit
+          </h3>
+          <p class="mt-3 text-[15px] leading-relaxed text-black/75 flex-1">
+            A ground-up cost breakdown of floor plate inefficiency, plumbing risers, and window
+            lines — the three variables that decide whether a conversion is a deal or a demolition.
+          </p>
+          <a href="#" class="mt-4 inline-block text-sm font-semibold border-b-2 border-ink pb-0.5 w-fit hover:opacity-60">Read analysis</a>
+        </article>
+
+        <article class="glass rounded-2xl p-6 md:p-7 flex flex-col shadow-[0_1px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_28px_rgba(0,0,0,0.09)] transition-shadow">
+          <p class="text-xs font-semibold tracking-wide text-muted uppercase">Market Trends</p>
+          <p class="text-xs text-muted mt-1">January 8, 2026 &nbsp;·&nbsp; National</p>
+          <h3 class="serif font-medium text-xl md:text-2xl mt-3 leading-snug">
+            Cap Rates Held Flat in Q4. Debt Costs Didn't.
+          </h3>
+          <p class="mt-3 text-[15px] leading-relaxed text-black/75 flex-1">
+            Why headline cap rate data is masking a widening gap between transaction pricing
+            and achievable leverage — and where that gap shows up first in underwriting.
+          </p>
+          <a href="#" class="mt-4 inline-block text-sm font-semibold border-b-2 border-ink pb-0.5 w-fit hover:opacity-60">Read analysis</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Case Studies & Models -->
+    <section id="models" class="max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-24 scroll-mt-20">
+      <div class="flex items-baseline justify-between gap-4 mb-10 md:mb-14">
+        <h2 class="serif font-semibold text-3xl md:text-5xl tracking-tight">Case Studies &amp; Financial Models</h2>
+        <p class="text-sm text-muted hidden sm:block font-medium">Underwriting frameworks and downloadable models</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="glass rounded-2xl p-6 md:p-7 flex flex-col shadow-[0_1px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_28px_rgba(0,0,0,0.09)] transition-shadow">
+          <p class="text-xs font-semibold tracking-wide text-muted uppercase">Multifamily · Value-Add</p>
+          <h3 class="serif font-medium text-xl mt-3 leading-snug">Sunbelt Value-Add Acquisition Model</h3>
+          <p class="mt-3 text-sm leading-relaxed text-black/75 flex-1">
+            A full underwriting model for garden-style multifamily acquisitions: unit-level
+            renovation waterfalls, phased lease-up, and a refinance sensitivity toggle.
+          </p>
+          <dl class="mt-5 text-sm space-y-1.5 border-t border-black/10 pt-4">
+            <div class="flex justify-between"><dt class="text-muted">IRR</dt><dd class="font-medium">Levered, 5-yr hold</dd></div>
+            <div class="flex justify-between"><dt class="text-muted">Cap rate</dt><dd class="font-medium">Going-in / exit</dd></div>
+            <div class="flex justify-between"><dt class="text-muted">DSCR</dt><dd class="font-medium">Min. and stabilized</dd></div>
+          </dl>
+          <div class="mt-5 flex flex-wrap gap-x-5 gap-y-2">
+            <a href="#" class="text-sm font-semibold border-b-2 border-ink pb-0.5 w-fit hover:opacity-60">View case study</a>
+            <a href="models/sunbelt-value-add-model.xlsx" download class="text-sm font-semibold border-b-2 border-ink pb-0.5 w-fit hover:opacity-60">Download model (.xlsx)</a>
+          </div>
         </div>
 
-       <!-- Right Column: Projects Placeholder -->
-<div class="col-span-1 md:col-span-8 flex flex-col items-center justify-center min-h-[400px] border-2 border-dashed border-slate-300 rounded-lg bg-slate-50/50 space-y-4 p-6">
-    
-    <!-- Spinning Loading Icon -->
-    <svg class="animate-spin h-10 w-10 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-    </svg>
+        <div class="glass rounded-2xl p-6 md:p-7 flex flex-col shadow-[0_1px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_28px_rgba(0,0,0,0.09)] transition-shadow">
+          <p class="text-xs font-semibold tracking-wide text-muted uppercase">Industrial · Sale-Leaseback</p>
+          <h3 class="serif font-medium text-xl mt-3 leading-snug">Sale-Leaseback Underwriting Framework</h3>
+          <p class="mt-3 text-sm leading-relaxed text-black/75 flex-1">
+            A framework for pricing single-tenant sale-leasebacks by decomposing the cap rate
+            into a credit spread and a real estate spread.
+          </p>
+          <dl class="mt-5 text-sm space-y-1.5 border-t border-black/10 pt-4">
+            <div class="flex justify-between"><dt class="text-muted">Cap rate</dt><dd class="font-medium">Credit-adjusted</dd></div>
+            <div class="flex justify-between"><dt class="text-muted">Lease term</dt><dd class="font-medium">Rent escalations</dd></div>
+            <div class="flex justify-between"><dt class="text-muted">DSCR</dt><dd class="font-medium">At assumed leverage</dd></div>
+          </dl>
+          <div class="mt-5 flex flex-wrap gap-x-5 gap-y-2">
+            <a href="#" class="text-sm font-semibold border-b-2 border-ink pb-0.5 w-fit hover:opacity-60">View case study</a>
+            <a href="models/sale-leaseback-framework.xlsx" download class="text-sm font-semibold border-b-2 border-ink pb-0.5 w-fit hover:opacity-60">Download model (.xlsx)</a>
+          </div>
+        </div>
 
-    <!-- Placeholder Text -->
-    <h3 class="text-xl font-medium text-slate-900 font-serif">Projects in Progress</h3>
-    <p class="text-slate-500 text-sm font-light text-center max-w-sm">
-        I am currently working on new underwriting models and deal breakdowns. Check back soon!
-    </p>
+        <div class="glass rounded-2xl p-6 md:p-7 flex flex-col shadow-[0_1px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_28px_rgba(0,0,0,0.09)] transition-shadow">
+          <p class="text-xs font-semibold tracking-wide text-muted uppercase">Office · Adaptive Reuse</p>
+          <h3 class="serif font-medium text-xl mt-3 leading-snug">Office-to-Residential Conversion Feasibility Model</h3>
+          <p class="mt-3 text-sm leading-relaxed text-black/75 flex-1">
+            A per-unit cost and revenue model for evaluating residential conversion feasibility
+            against as-is office valuation and hold economics.
+          </p>
+          <dl class="mt-5 text-sm space-y-1.5 border-t border-black/10 pt-4">
+            <div class="flex justify-between"><dt class="text-muted">IRR</dt><dd class="font-medium">Unlevered basis</dd></div>
+            <div class="flex justify-between"><dt class="text-muted">Cost / unit</dt><dd class="font-medium">Hard + soft costs</dd></div>
+            <div class="flex justify-between"><dt class="text-muted">Cap rate</dt><dd class="font-medium">Stabilized exit</dd></div>
+          </dl>
+          <div class="mt-5 flex flex-wrap gap-x-5 gap-y-2">
+            <a href="#" class="text-sm font-semibold border-b-2 border-ink pb-0.5 w-fit hover:opacity-60">View case study</a>
+            <a href="models/office-conversion-model.xlsx" download class="text-sm font-semibold border-b-2 border-ink pb-0.5 w-fit hover:opacity-60">Download model (.xlsx)</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <!-- About -->
+    <section id="about" class="max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-24 scroll-mt-20">
+      <h2 class="serif font-semibold text-3xl md:text-5xl tracking-tight mb-10 md:mb-14">About</h2>
+      <div class="grid md:grid-cols-2 gap-8 md:gap-10">
+        <div class="glass rounded-2xl p-7 md:p-9 shadow-[0_1px_20px_rgba(0,0,0,0.05)]">
+          <p class="text-[15px] leading-[1.8] text-black/80">
+            My background is in economics, with a focus on how capital markets and property
+            fundamentals interact at the deal level. I spend most of my time in underwriting
+            models and market data — testing how a deal's return profile changes as assumptions
+            move, and where a pro forma quietly relies on something that isn't guaranteed.
+          </p>
+          <p class="mt-4 text-[15px] leading-[1.8] text-black/80">
+            This site is where that work lives in public: deal write-ups, valuation frameworks,
+            and the models behind them, published as I build them rather than after the fact.
+          </p>
+        </div>
+        <div class="glass rounded-2xl p-7 md:p-9 flex items-center shadow-[0_1px_20px_rgba(0,0,0,0.05)]">
+          <p class="serif font-medium text-xl md:text-2xl leading-snug text-black/90">
+            A model is only as good as the assumption you're least willing to question —
+            so that's always where I start.
+          </p>
+        </div>
+      </div>
+    </section>
 
-    <!-- Footer -->
-    <footer class="max-w-5xl mx-auto py-10 px-6 border-t border-slate-300 mt-16 flex justify-between items-center text-xs text-slate-500 font-sans">
-        <p>&copy; 2026 Andrew Galdys</p>
-    </footer>
+  </main>
+
+  <!-- Footer (inverted) -->
+  <footer id="contact" class="bg-ink text-paper relative z-10 scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-24">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-10">
+
+        <div class="glass-dark rounded-2xl p-7 md:p-9">
+          <h2 class="serif font-semibold text-2xl md:text-3xl mb-5">Get in touch</h2>
+          <ul class="space-y-2.5 text-sm">
+            <li>
+              <a href="mailto:hello@andrewgaldys.com" class="font-medium border-b border-white/40 pb-0.5 hover:border-white">
+                hello@andrewgaldys.com
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/andrewgaldys" class="font-medium border-b border-white/40 pb-0.5 hover:border-white">
+                LinkedIn
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="glass-dark rounded-2xl p-7 md:p-9">
+          <h2 class="serif font-semibold text-2xl md:text-3xl mb-5">Get new dispatches by email</h2>
+          <form class="flex flex-col sm:flex-row gap-3" onsubmit="return false;">
+            <label for="dispatch-email" class="sr-only">Email address</label>
+            <input
+              id="dispatch-email"
+              type="email"
+              required
+              placeholder="you@email.com"
+              class="bg-white/5 border border-white/25 rounded-lg px-4 py-2.5 text-sm text-paper placeholder-white/40 flex-1 focus:border-white outline-none"
+            >
+            <button
+              type="submit"
+              class="bg-paper text-ink text-sm font-semibold rounded-lg px-5 py-2.5 hover:bg-white/85 transition-colors"
+            >
+              Subscribe
+            </button>
+          </form>
+          <p class="mt-3 text-xs text-white/50">One email per new dispatch. No spam, unsubscribe anytime.</p>
+        </div>
+
+      </div>
+
+      <div class="mt-14 pt-6 border-t border-white/15 flex flex-col sm:flex-row gap-2 justify-between text-xs text-white/50">
+        <p>&copy; 2026 Andrew Galdys. All rights reserved.</p>
+        <p>Economics, commercial real estate, and financial modeling.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scrollspy: highlight the nav link for the section currently in view.
+    (function () {
+      const navLinks = Array.from(document.querySelectorAll('[data-nav]'));
+      const sections = navLinks
+        .map(link => document.querySelector(link.getAttribute('href')))
+        .filter(Boolean);
+
+      function setActive(id) {
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+
+      // Immediate feedback on click, before scroll settles.
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          setActive(link.getAttribute('href').slice(1));
+        });
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        // Pick the entry closest to the top of the viewport among those intersecting.
+        const visible = entries.filter(e => e.isIntersecting);
+        if (visible.length === 0) return;
+        visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        setActive(visible[0].target.id);
+      }, {
+        root: null,
+        rootMargin: '-40% 0px -50% 0px', // trigger when section is near the top third
+        threshold: 0
+      });
+
+      sections.forEach(section => observer.observe(section));
+    })();
+  </script>
 
 </body>
 </html>
