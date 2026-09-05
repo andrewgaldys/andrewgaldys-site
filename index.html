@@ -1,259 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Andrew Galdys — Economics, Deal Breakdowns & Financial Modeling</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --white: #ffffff;
-    --white-soft: rgba(255,255,255,0.86);
-    --white-faint: rgba(255,255,255,0.5);
-    --hairline: rgba(255,255,255,0.22);
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew Galdys | Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        bone: '#f9f6f0'
+                    }
+                }
+            }
+        }
+    </script>
 
-  *{ margin:0; padding:0; box-sizing:border-box; }
+    <style>
+        /* Hide Scrollbar but keep functionality */
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
 
-  html, body{
-    width:100vw;
-    height:100vh;
-    overflow:hidden;
-    background:#050505;
-  }
+        /* Bubble Base Styling & Morphing Transitions */
+        .bubble {
+            position: absolute;
+            /* Transition for top, left, width, height, border-radius, background */
+            transition: all 0.7s cubic-bezier(0.25, 1, 0.4, 1), transform 0.3s ease, background-color 0.4s ease;
+            cursor: pointer;
+            border-radius: 9999px; /* Fully rounded by default */
+            overflow: hidden;
+        }
 
-  body{
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    color:var(--white);
-  }
+        /* Hover State for Idle Bubbles */
+        .bubble:not(.expanded):hover {
+            transform: scale(1.05);
+            background-color: rgba(255, 255, 255, 0.55);
+            animation-play-state: paused !important; /* Pauses floating */
+        }
 
-  /* ---------- FOG LAYER ---------- */
-  .fog-stage{
-    position:fixed;
-    inset:0;
-    width:100vw;
-    height:100vh;
-    background:#0a0a0a;
-    overflow:hidden;
-    z-index:0;
-  }
+        /* Expanded State Logic */
+        .bubble.expanded {
+            top: 2rem !important;
+            left: 2rem !important;
+            width: calc(100% - 4rem) !important;
+            height: calc(100% - 4rem) !important;
+            border-radius: 1.5rem !important; /* rounded-2xl */
+            cursor: default;
+            animation: none !important; /* Kills floating animation */
+            transform: scale(1) translate(0, 0) !important; /* Reset any active transform */
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(24px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+        }
 
-  .fog-stage svg{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-  }
+        /* Hidden Siblings */
+        .hidden-bubble {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.9) !important;
+        }
 
-  .fog-vignette{
-    position:absolute;
-    inset:0;
-    background:
-      radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 78%, rgba(0,0,0,0.88) 100%);
-    z-index:1;
-  }
+        /* Title Transitions (Moving from Center to Top Left) */
+        .bubble-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.7s cubic-bezier(0.25, 1, 0.4, 1);
+            text-align: center;
+            width: 90%;
+            margin: 0;
+            font-size: 1.5rem;
+            color: #1e293b; /* slate-800 */
+        }
+        
+        .bubble.expanded .bubble-title {
+            top: 3rem;
+            left: 3.5rem;
+            transform: translate(0, 0);
+            text-align: left;
+            font-size: 2.5rem;
+            width: auto;
+        }
 
-  .fog-grain{
-    position:absolute;
-    inset:0;
-    opacity:0.05;
-    mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  }
+        /* Content Transitions (Fading in after expansion) */
+        .bubble-content {
+            position: absolute;
+            top: 7.5rem; /* Pushed down to clear the expanded title */
+            left: 3.5rem;
+            right: 3.5rem;
+            bottom: 3.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease 0s;
+            overflow-y: auto;
+        }
 
-  /* ---------- CONTENT ---------- */
-  .frame{
-    position:relative;
-    z-index:2;
-    width:100vw;
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:space-between;
-    padding:5.5vh 6vw;
-    text-align:center;
-  }
+        .bubble.expanded .bubble-content {
+            opacity: 1;
+            pointer-events: auto;
+            transition-delay: 0.5s; /* Wait for expansion to finish before fading text in */
+        }
 
-  .masthead{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:0.55rem;
-  }
+        /* Close Button Transitions */
+        .close-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease 0s, transform 0.2s;
+        }
 
-  .masthead h1{
-    font-family:'Playfair Display', Georgia, 'Times New Roman', serif;
-    font-weight:600;
-    font-style:italic;
-    font-size:clamp(1.6rem, 3vw, 2.5rem);
-    letter-spacing:0.01em;
-    color:var(--white);
-    text-shadow: 0 2px 24px rgba(0,0,0,0.5);
-  }
+        .bubble.expanded .close-btn {
+            opacity: 1;
+            pointer-events: auto;
+            transition-delay: 0.6s;
+        }
 
-  .masthead .subtitle{
-    font-family:'Inter', sans-serif;
-    font-weight:500;
-    font-size:clamp(0.68rem, 1vw, 0.82rem);
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--white-faint);
-  }
+        .close-btn:hover {
+            transform: scale(1.1) rotate(90deg);
+        }
 
-  .statement{
-    max-width:44ch;
-    font-family:'Playfair Display', Georgia, serif;
-    font-weight:500;
-    font-size:clamp(1.15rem, 2.4vw, 1.65rem);
-    line-height:1.5;
-    color:var(--white-soft);
-    text-shadow: 0 2px 30px rgba(0,0,0,0.55);
-  }
+        /* Initial Placements & Floating Animations */
+        #bubble-about { 
+            top: 15%; left: 12%; 
+            width: 14rem; height: 14rem; 
+            animation: float1 7s ease-in-out infinite; 
+        }
+        #bubble-models { 
+            top: 45%; right: 12%; 
+            width: 17rem; height: 17rem; 
+            animation: float2 9s ease-in-out infinite; 
+        }
+        #bubble-research { 
+            bottom: 15%; left: 28%; 
+            width: 15rem; height: 15rem; 
+            animation: float3 8s ease-in-out infinite; 
+        }
 
-  nav.links{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:0.9rem;
-    font-family:'Inter', sans-serif;
-    font-weight:500;
-    font-size:clamp(0.68rem, 1vw, 0.8rem);
-    letter-spacing:0.06em;
-    color:var(--white-faint);
-  }
-
-  nav.links a{
-    color:inherit;
-    text-decoration:none;
-    transition:color 0.25s ease;
-    white-space:nowrap;
-  }
-
-  nav.links a:hover,
-  nav.links a:focus-visible{
-    color:var(--white);
-  }
-
-  nav.links a:focus-visible{
-    outline:1px solid var(--hairline);
-    outline-offset:4px;
-  }
-
-  nav.links .sep{
-    color:var(--hairline);
-    font-size:0.75em;
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    .fog-stage feTurbulence,
-    .fog-stage animate{
-      display:none;
-    }
-  }
-</style>
+        /* Continuous Gentle Floating CSS Animations */
+        @keyframes float1 { 
+            0%, 100% { transform: translate(0, 0); } 
+            50% { transform: translate(15px, -15px); } 
+        }
+        @keyframes float2 { 
+            0%, 100% { transform: translate(0, 0); } 
+            50% { transform: translate(-20px, 12px); } 
+        }
+        @keyframes float3 { 
+            0%, 100% { transform: translate(0, 0); } 
+            50% { transform: translate(12px, 20px); } 
+        }
+    </style>
 </head>
-<body>
+<body class="bg-bone h-screen w-full overflow-hidden flex flex-row text-slate-800 antialiased selection:bg-slate-300 selection:text-slate-900">
 
-  <div class="fog-stage" aria-hidden="true">
-    <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <filter id="fogFilter" x="-20%" y="-20%" width="140%" height="140%">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.0016 0.004"
-            numOctaves="4"
-            seed="7"
-            stitchTiles="stitch"
-            result="noise">
-            <animate
-              attributeName="baseFrequency"
-              dur="42s"
-              values="0.0016 0.004;0.0022 0.0032;0.0013 0.0048;0.0016 0.004"
-              repeatCount="indefinite" />
-          </feTurbulence>
-          <feColorMatrix in="noise" type="matrix"
-            values="0 0 0 0 1
-                    0 0 0 0 1
-                    0 0 0 0 1
-                    0 0 0 4 -1.6" />
-          <feGaussianBlur stdDeviation="1.2" />
-        </filter>
+    <aside class="w-[35%] h-full flex flex-col justify-center items-center p-10 z-10 relative">
+        <div class="absolute right-0 top-[10%] bottom-[10%] w-[1px] bg-gradient-to-b from-transparent via-slate-200 to-transparent"></div>
+        
+        <div class="w-48 h-48 rounded-full border-4 border-white shadow-xl shadow-black/5 mb-8 overflow-hidden bg-slate-200">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=300&h=300" alt="Andrew Galdys" class="w-full h-full object-cover">
+        </div>
+        
+        <h1 class="text-4xl lg:text-5xl font-serif text-slate-900 mb-4 tracking-tight">Andrew Galdys</h1>
+        <h2 class="text-xs lg:text-sm uppercase tracking-[0.2em] font-medium text-slate-500 text-center max-w-[80%]">
+            Economics & Commercial Real Estate Analysis
+        </h2>
+    </aside>
 
-        <filter id="fogFilterSlow" x="-20%" y="-20%" width="140%" height="140%">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.0009 0.0022"
-            numOctaves="3"
-            seed="42"
-            stitchTiles="stitch"
-            result="noise2">
-            <animate
-              attributeName="baseFrequency"
-              dur="68s"
-              values="0.0009 0.0022;0.0014 0.0016;0.0007 0.0026;0.0009 0.0022"
-              repeatCount="indefinite" />
-          </feTurbulence>
-          <feColorMatrix in="noise2" type="matrix"
-            values="0 0 0 0 1
-                    0 0 0 0 1
-                    0 0 0 0 1
-                    0 0 0 3.2 -1.15" />
-          <feGaussianBlur stdDeviation="2.5" />
-        </filter>
-      </defs>
+    <main id="canvas" class="w-[65%] h-full relative">
 
-      <rect width="100%" height="100%" fill="#0a0a0a" />
-      <rect width="100%" height="100%" filter="url(#fogFilterSlow)" opacity="0.55">
-        <animateTransform
-          attributeName="transform"
-          type="translate"
-          values="0 0; 30 -18; -20 22; 0 0"
-          dur="60s"
-          repeatCount="indefinite" />
-      </rect>
-      <rect width="100%" height="100%" filter="url(#fogFilter)" opacity="0.42">
-        <animateTransform
-          attributeName="transform"
-          type="translate"
-          values="0 0; -25 16; 22 -14; 0 0"
-          dur="38s"
-          repeatCount="indefinite" />
-      </rect>
-    </svg>
-    <div class="fog-grain"></div>
-    <div class="fog-vignette"></div>
-  </div>
+        <div id="bubble-about" class="bubble bg-white/40 backdrop-blur-md border border-white/60 shadow-lg shadow-black/5 group">
+            
+            <h3 class="bubble-title font-serif font-semibold">About</h3>
+            
+            <button class="close-btn bg-slate-100/50 hover:bg-slate-200 text-slate-600 p-2 rounded-full border border-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
 
-  <div class="frame">
+            <div class="bubble-content hide-scroll">
+                <div class="max-w-3xl">
+                    <p class="text-lg text-slate-700 leading-relaxed mb-8">
+                        With a rigorous background in economics, I specialize in dissecting complex financial narratives to drive actionable insights in commercial real estate. My core philosophy centers around a disciplined, data-first approach to financial modeling and asset valuation.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-white/60 p-6 rounded-2xl border border-white/80 shadow-sm">
+                            <div class="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center mb-4">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                            </div>
+                            <h4 class="font-bold text-slate-900 mb-2 font-serif text-xl">Multifamily Investment Sales</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed">Expertise in underwriting, evaluating, and positioning multifamily assets for institutional and high-net-worth acquisitions.</p>
+                        </div>
+                        
+                        <div class="bg-white/60 p-6 rounded-2xl border border-white/80 shadow-sm">
+                            <div class="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center mb-4">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <h4 class="font-bold text-slate-900 mb-2 font-serif text-xl">Real Estate Private Equity</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed">Extensive experience architecting flexible financial models, analyzing capital stacks, and projecting long-term yield metrics.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <header class="masthead">
-      <h1>Andrew Galdys</h1>
-      <p class="subtitle">Economics, Deal Breakdowns &amp; Financial Modeling</p>
-    </header>
+        <div id="bubble-models" class="bubble bg-white/40 backdrop-blur-md border border-white/60 shadow-lg shadow-black/5 group">
+            
+            <h3 class="bubble-title font-serif font-semibold">Case Studies<br><span class="text-lg font-sans font-normal text-slate-500">& Models</span></h3>
+            
+            <button class="close-btn bg-slate-100/50 hover:bg-slate-200 text-slate-600 p-2 rounded-full border border-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
 
-    <p class="statement">
-      I write to think clearly about how deals actually get underwritten — where the assumptions live, where they break, and what the spreadsheet doesn't tell you until you stress it.
-    </p>
+            <div class="bubble-content hide-scroll">
+                <div class="flex flex-col gap-4 max-w-4xl">
+                    <a href="#" class="group/item flex items-center justify-between p-6 bg-white/50 border border-white/80 rounded-2xl hover:bg-white transition-colors shadow-sm">
+                        <div class="flex items-center gap-5">
+                            <div class="bg-green-100/80 p-3 rounded-xl border border-green-200">
+                                <svg class="w-8 h-8 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-lg">Value-Add Multifamily Underwriting</h4>
+                                <p class="text-sm text-slate-500 mt-1">Comprehensive 5-year IRR, Equity Multiple, and waterfall distribution model.</p>
+                            </div>
+                        </div>
+                        <div class="bg-slate-100 p-3 rounded-full text-slate-400 group-hover/item:text-slate-900 group-hover/item:bg-slate-200 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </div>
+                    </a>
+                    
+                    <a href="#" class="group/item flex items-center justify-between p-6 bg-white/50 border border-white/80 rounded-2xl hover:bg-white transition-colors shadow-sm">
+                        <div class="flex items-center gap-5">
+                            <div class="bg-green-100/80 p-3 rounded-xl border border-green-200">
+                                <svg class="w-8 h-8 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-lg">Stabilized Asset Sensitivity Matrix</h4>
+                                <p class="text-sm text-slate-500 mt-1">Interactive data tables for Cap Rate vs. NOI shock analysis on stabilized hold periods.</p>
+                            </div>
+                        </div>
+                        <div class="bg-slate-100 p-3 rounded-full text-slate-400 group-hover/item:text-slate-900 group-hover/item:bg-slate-200 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </div>
+                    </a>
 
-    <nav class="links">
-      <a href="#deal-dispatches">Deal Dispatches</a>
-      <span class="sep">|</span>
-      <a href="#case-studies">Case Studies &amp; Models</a>
-      <span class="sep">|</span>
-      <a href="#about">About</a>
-      <span class="sep">|</span>
-      <a href="#contact">Contact</a>
-    </nav>
+                    <a href="#" class="group/item flex items-center justify-between p-6 bg-white/50 border border-white/80 rounded-2xl hover:bg-white transition-colors shadow-sm">
+                        <div class="flex items-center gap-5">
+                            <div class="bg-blue-100/80 p-3 rounded-xl border border-blue-200">
+                                <svg class="w-8 h-8 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-lg">South Florida Rent Comps Database</h4>
+                                <p class="text-sm text-slate-500 mt-1">Aggregated and cleaned rent per SF data across Class A/B developments (PDF/Data).</p>
+                            </div>
+                        </div>
+                        <div class="bg-slate-100 p-3 rounded-full text-slate-400 group-hover/item:text-slate-900 group-hover/item:bg-slate-200 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
 
-  </div>
+        <div id="bubble-research" class="bubble bg-white/40 backdrop-blur-md border border-white/60 shadow-lg shadow-black/5 group">
+            
+            <h3 class="bubble-title font-serif font-semibold">South Florida<br><span class="text-base font-sans font-normal text-slate-500 uppercase tracking-widest mt-1 block">Market Research</span></h3>
+            
+            <button class="close-btn bg-slate-100/50 hover:bg-slate-200 text-slate-600 p-2 rounded-full border border-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
 
+            <div class="bubble-content hide-scroll">
+                <p class="text-slate-600 mb-8 max-w-2xl text-lg">Detailed notes and demographic analyses focusing on emerging and established commercial corridors across the Space and Treasure Coasts.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white/60 p-6 rounded-2xl border border-white/80 shadow-sm flex flex-col">
+                        <h4 class="font-bold text-slate-900 font-serif text-2xl mb-4 border-b border-slate-300/50 pb-3">Jupiter</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed flex-grow">A high-barrier-to-entry market characterized by strict zoning and strong demographic tailwinds. Current research focuses on rent growth elasticity and operational efficiency in Class A mixed-use assets.</p>
+                    </div>
+                    
+                    <div class="bg-white/60 p-6 rounded-2xl border border-white/80 shadow-sm flex flex-col">
+                        <h4 class="font-bold text-slate-900 font-serif text-2xl mb-4 border-b border-slate-300/50 pb-3">Fort Pierce</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed flex-grow">A rapidly emerging commercial corridor. Current modeling tracks industrial adaptive reuse potential and the burgeoning demand for workforce housing proximate to logistics hubs.</p>
+                    </div>
+                    
+                    <div class="bg-white/60 p-6 rounded-2xl border border-white/80 shadow-sm flex flex-col">
+                        <h4 class="font-bold text-slate-900 font-serif text-2xl mb-4 border-b border-slate-300/50 pb-3">St. Lucie County</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed flex-grow">Driven by rapid population influx, demand outpaces supply in both retail and multifamily sectors. Analysis is heavily weighted toward infrastructural growth zones and yield-on-cost metrics for ground-up development.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bubbles = document.querySelectorAll('.bubble');
+            const closeBtns = document.querySelectorAll('.close-btn');
+            
+            // Handle clicking a bubble to expand
+            bubbles.forEach(bubble => {
+                bubble.addEventListener('click', function(e) {
+                    // Prevent action if already expanded
+                    if (this.classList.contains('expanded')) return;
+
+                    // Expand clicked bubble
+                    this.classList.add('expanded');
+
+                    // Fade out siblings
+                    bubbles.forEach(b => {
+                        if (b !== this) {
+                            b.classList.add('hidden-bubble');
+                        }
+                    });
+                });
+            });
+
+            // Handle clicking the close button to shrink
+            closeBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent the bubble click event from firing again
+
+                    const activeBubble = this.closest('.bubble');
+                    
+                    // Remove expanded class
+                    activeBubble.classList.remove('expanded');
+
+                    // Bring siblings back
+                    bubbles.forEach(b => {
+                        b.classList.remove('hidden-bubble');
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
