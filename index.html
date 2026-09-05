@@ -36,33 +36,33 @@
 </head>
 <body class="bg-bone text-ink font-sans h-screen w-screen overflow-hidden flex flex-col md:flex-row box-border antialiased">
     
-    <div class="flex flex-col justify-between p-8 md:p-16 w-full md:w-1/2 h-full z-10">
+    <div class="flex flex-col justify-between p-6 md:p-16 w-full md:w-1/2 h-[60%] md:h-full z-10 bg-bone">
         
         <header>
             <h1 class="text-xl md:text-2xl font-medium tracking-wide text-ink">Andrew Galdys</h1>
-            <p class="text-xs md:text-sm text-charcoal mt-2 tracking-widest uppercase">Real Estate Finance</p>
+            <p class="text-xs md:text-sm text-charcoal mt-1 md:mt-2 tracking-widest uppercase">Real Estate Finance</p>
         </header>
 
         <main class="flex-grow flex flex-col justify-center">
-            <nav class="flex flex-col space-y-6 md:space-y-10 items-start">
-                <a href="about.html" class="text-4xl md:text-6xl font-medium tracking-tight text-ink hover:opacity-40 transition-opacity duration-300">About</a>
-                <a href="models.html" class="text-4xl md:text-6xl font-medium tracking-tight text-ink hover:opacity-40 transition-opacity duration-300">Models</a>
-                <a href="research.html" class="text-4xl md:text-6xl font-medium tracking-tight text-ink hover:opacity-40 transition-opacity duration-300">Research</a>
+            <nav class="flex flex-col space-y-4 md:space-y-10 items-start">
+                <a href="about.html" class="text-3xl md:text-6xl font-medium tracking-tight text-ink hover:opacity-40 transition-opacity duration-300">About</a>
+                <a href="models.html" class="text-3xl md:text-6xl font-medium tracking-tight text-ink hover:opacity-40 transition-opacity duration-300">Models</a>
+                <a href="research.html" class="text-3xl md:text-6xl font-medium tracking-tight text-ink hover:opacity-40 transition-opacity duration-300">Research</a>
             </nav>
         </main>
 
-        <footer class="flex flex-col-reverse xl:flex-row justify-between items-start xl:items-end text-sm text-charcoal w-full gap-y-4">
+        <footer class="flex flex-col-reverse xl:flex-row justify-between items-start xl:items-end text-xs md:text-sm text-charcoal w-full gap-y-3">
             <p class="tracking-wide">&copy; 2026 Andrew Galdys</p>
-            <div class="flex flex-row space-x-8 md:space-x-6">
+            <div class="flex flex-row space-x-6 md:space-x-6">
                 <a href="mailto:hello@andrewgaldys.com" class="hover:text-ink hover:underline underline-offset-4 transition-all duration-300 tracking-wide">Email</a>
                 <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="hover:text-ink hover:underline underline-offset-4 transition-all duration-300 tracking-wide">LinkedIn</a>
             </div>
         </footer>
     </div>
 
-    <div class="hidden md:block w-1/2 h-full relative bg-ink overflow-hidden" id="gallery-container">
-        <img id="slide-a" src="bw1.jpg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out opacity-100">
-        <img id="slide-b" src="bw2.jpg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out opacity-0">
+    <div class="w-full md:w-1/2 h-[40%] md:h-full relative bg-ink overflow-hidden" id="gallery-container">
+        <img id="slide-a" src="bw1.jpg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ease-in-out opacity-100">
+        <img id="slide-b" src="bw2.jpg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ease-in-out opacity-0">
     </div>
 
     <script>
@@ -75,19 +75,18 @@
             let currentIndex = 0;
             const slideA = document.getElementById('slide-a');
             const slideB = document.getElementById('slide-b');
-            let activeSlide = 'a'; // Tracks which image tag is currently visible
+            let activeSlide = 'a'; 
 
-            // Preload the first few images to prevent flickering on load
+            // Preload the next image to prevent network flickering
             const preload = new Image();
             preload.src = images[1];
 
+            // Set rotation to 3000 milliseconds (3 seconds)
             setInterval(() => {
-                // Advance to the next index, loop back to 0 if at the end
                 currentIndex = (currentIndex + 1) % images.length;
                 const nextImageSrc = images[currentIndex];
 
                 if (activeSlide === 'a') {
-                    // Load new image into B, fade B in, fade A out
                     slideB.src = nextImageSrc;
                     slideB.classList.remove('opacity-0');
                     slideB.classList.add('opacity-100');
@@ -95,7 +94,6 @@
                     slideA.classList.add('opacity-0');
                     activeSlide = 'b';
                 } else {
-                    // Load new image into A, fade A in, fade B out
                     slideA.src = nextImageSrc;
                     slideA.classList.remove('opacity-0');
                     slideA.classList.add('opacity-100');
@@ -103,7 +101,7 @@
                     slideB.classList.add('opacity-0');
                     activeSlide = 'a';
                 }
-            }, 2000); // 2000 milliseconds = 2 seconds
+            }, 3000); 
         });
     </script>
 </body>
