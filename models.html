@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Models | Andrew Galdys</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        bone: '#fbfbfa',
+                        ink: '#111111',
+                        charcoal: '#555555'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Base Styles for Zero-Scroll Integrity -->
+    <style>
+        body {
+            overscroll-behavior: none;
+        }
+    </style>
+</head>
+<body class="bg-bone text-ink font-sans h-[100dvh] w-screen overflow-hidden flex flex-col justify-between p-6 md:p-16 box-border antialiased">
+    
+    <!-- 1. Header -->
+    <header class="flex flex-col z-10">
+        <a href="index.html" class="inline-block hover:opacity-60 transition-opacity duration-300 w-max">
+            <h1 class="text-xl md:text-2xl font-medium tracking-wide text-ink">Andrew Galdys</h1>
+        </a>
+        <!-- Change "MODELS" to "RESEARCH" for your research.html file -->
+        <p class="text-xs md:text-sm text-charcoal mt-1 tracking-widest uppercase">Models</p>
+    </header>
+
+    <!-- 2. Centered Placeholder Message -->
+    <main class="flex-grow flex flex-col items-center justify-center z-10">
+        <div class="text-center space-y-3 md:space-y-4">
+            <h2 class="text-2xl md:text-4xl lg:text-5xl font-medium tracking-tight text-ink">
+                Currently in Development
+            </h2>
+            <p class="text-sm md:text-base text-charcoal tracking-wide">
+                Underwriting case studies and pro formas will be published here shortly.
+            </p>
+        </div>
+    </main>
+
+    <!-- 3. Footer -->
+    <footer class="flex flex-col-reverse md:flex-row justify-between items-start md:items-end text-xs md:text-sm text-charcoal w-full gap-y-4 z-10">
+        <div class="flex flex-row space-x-6 md:space-x-6">
+            <a href="index.html" class="hover:text-ink hover:underline underline-offset-4 transition-all duration-300 tracking-wide">Back to Home</a>
+            <a href="mailto:hello@andrewgaldys.com" class="hover:text-ink hover:underline underline-offset-4 transition-all duration-300 tracking-wide">Email</a>
+        </div>
+    </footer>
+
+</body>
+</html>
