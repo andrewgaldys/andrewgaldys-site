@@ -78,8 +78,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const images = [
-                'bw1.jpg', 'bw2.jpg', 'bw3.jpg', 'bw4.jpg', 
-                'bw5.jpg', 'bw6.jpg', 'bw7.jpg'
+                'bw1.jpg', 'bw2.jpg', 'bw3.jpg', 'bw6.jpg'
             ];
             
             let currentIndex = 0;
@@ -91,7 +90,7 @@
             const preload = new Image();
             preload.src = images[1];
 
-            // Set rotation to 3000 milliseconds (3 seconds)
+            // Set rotation to 6000 milliseconds (3 seconds)
             setInterval(() => {
                 currentIndex = (currentIndex + 1) % images.length;
                 const nextImageSrc = images[currentIndex];
@@ -111,7 +110,7 @@
                     slideB.classList.add('opacity-0');
                     activeSlide = 'a';
                 }
-            }, 3000); 
+            }, 6000); 
         });
     </script>
 </body>
