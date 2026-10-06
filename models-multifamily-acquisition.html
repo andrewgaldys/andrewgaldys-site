@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multifamily Acquisition Model (Sample) | Andrew Galdys</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        bone: '#fbfbfa',
+                        ink: '#111111',
+                        charcoal: '#555555'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            overscroll-behavior: none;
+        }
+    </style>
+</head>
+<body class="bg-bone text-ink font-sans min-h-[100dvh] w-full flex flex-col p-6 md:p-16 box-border antialiased">
+
+    <!-- Header -->
+    <header class="flex flex-col">
+        <a href="/" class="inline-block hover:opacity-60 transition-opacity duration-300 w-max">
+            <h1 class="text-xl md:text-2xl font-medium tracking-wide text-ink">Andrew Galdys</h1>
+        </a>
+        <a href="/models" class="text-xs md:text-sm text-charcoal mt-1 tracking-widest uppercase hover:text-ink transition-colors duration-300 w-max">&larr; Models</a>
+    </header>
+
+    <!-- Model detail -->
+    <main class="flex-grow w-full max-w-2xl mx-auto py-12 md:py-20">
+        <article>
+            <div class="flex items-center space-x-3 text-xs text-charcoal tracking-widest uppercase">
+                <span>October 2026</span>
+                <span>&middot;</span>
+                <span>Multifamily</span>
+                <span>&middot;</span>
+                <span class="border border-ink/20 rounded-full px-2 py-0.5 normal-case tracking-wide">Sample</span>
+            </div>
+
+            <h2 class="mt-4 text-3xl md:text-5xl font-medium tracking-tight text-ink leading-tight">
+                Multifamily Acquisition Model
+            </h2>
+
+            <p class="mt-6 text-sm md:text-base text-charcoal tracking-wide leading-relaxed border-l-2 border-ink/20 pl-4">
+                Sample layout. This page shows how each model is presented. The figures are blank placeholders, not a real deal.
+            </p>
+
+            <div class="mt-10 space-y-12 text-base md:text-lg leading-relaxed text-ink">
+
+                <section>
+                    <h3 class="text-xs md:text-sm text-charcoal tracking-widest uppercase mb-3">Overview</h3>
+                    <p>
+                        A short description of what the model does: the property type, the strategy (for example value-add or stabilized hold), the hold period, and what question it is meant to answer.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 class="text-xs md:text-sm text-charcoal tracking-widest uppercase mb-3">Key assumptions</h3>
+                    <table class="w-full text-sm md:text-base border-collapse">
+                        <tbody>
+                            <tr class="border-b border-ink/10"><td class="py-3 pr-4 text-charcoal">Purchase price</td><td class="py-3 text-right">&mdash;</td></tr>
+                            <tr class="border-b border-ink/10"><td class="py-3 pr-4 text-charcoal">Units / price per unit</td><td class="py-3 text-right">&mdash;</td></tr>
+                            <tr class="border-b border-ink/10"><td class="py-3 pr-4 text-charcoal">Going-in cap rate</td><td class="py-3 text-right">&mdash;</td></tr>
+                            <tr class="border-b border-ink/10"><td class="py-3 pr-4 text-charcoal">Loan-to-cost / interest rate</td><td class="py-3 text-right">&mdash;</td></tr>
+                            <tr class="border-b border-ink/10"><td class="py-3 pr-4 text-charcoal">Annual rent growth</td><td class="py-3 text-right">&mdash;</td></tr>
+                            <tr class="border-b border-ink/10"><td class="py-3 pr-4 text-charcoal">Hold period / exit cap rate</td><td class="py-3 text-right">&mdash;</td></tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section>
+                    <h3 class="text-xs md:text-sm text-charcoal tracking-widest uppercase mb-3">Headline returns</h3>
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div class="border border-ink/10 rounded-lg py-5">
+                            <p class="text-2xl md:text-3xl font-medium tracking-tight">&mdash;</p>
+                            <p class="mt-1 text-xs text-charcoal tracking-widest uppercase">Levered IRR</p>
+                        </div>
+                        <div class="border border-ink/10 rounded-lg py-5">
+                            <p class="text-2xl md:text-3xl font-medium tracking-tight">&mdash;</p>
+                            <p class="mt-1 text-xs text-charcoal tracking-widest uppercase">Equity multiple</p>
+                        </div>
+                        <div class="border border-ink/10 rounded-lg py-5">
+                            <p class="text-2xl md:text-3xl font-medium tracking-tight">&mdash;</p>
+                            <p class="mt-1 text-xs text-charcoal tracking-widest uppercase">Cash-on-cash</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3 class="text-xs md:text-sm text-charcoal tracking-widest uppercase mb-3">Download</h3>
+                    <span class="inline-block border border-ink/20 text-charcoal rounded-lg px-5 py-3 text-sm md:text-base tracking-wide cursor-not-allowed select-none">
+                        Download model (.xlsx) &mdash; coming soon
+                    </span>
+                </section>
+
+            </div>
+
+            <!-- Related article -->
+            <a href="/research-deal-teardown" class="group block mt-14 border border-ink/10 rounded-lg p-5 md:p-6 hover:border-ink/30 transition-colors duration-300">
+                <p class="text-xs text-charcoal tracking-widest uppercase">Related research</p>
+                <p class="mt-2 text-lg md:text-xl font-medium tracking-tight text-ink group-hover:opacity-50 transition-opacity duration-300">
+                    Deal Teardown: Reverse-Engineering a Multifamily Trade &rarr;
+                </p>
+            </a>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="flex flex-col-reverse md:flex-row justify-between items-start md:items-end text-xs md:text-sm text-charcoal w-full gap-y-4">
+        <div class="flex flex-row space-x-6">
+            <a href="/models" class="hover:text-ink hover:underline underline-offset-4 transition-all duration-300 tracking-wide">All Models</a>
+            <a href="/" class="hover:text-ink hover:underline underline-offset-4 transition-all duration-300 tracking-wide">Home</a>
+            <a href="mailto:andrewgaldys.inbox@gmail.com" class="hover:text-ink hover:underline underline-offset-4 transition-all duration-300 tracking-wide">Email</a>
+        </div>
+    </footer>
+
+</body>
+</html>

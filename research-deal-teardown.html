@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deal Teardown (Sample) | Andrew Galdys</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        bone: '#fbfbfa',
+                        ink: '#111111',
+                        charcoal: '#555555'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            overscroll-behavior: none;
+        }
+    </style>
+</head>
+<body class="bg-bone text-ink font-sans min-h-[100dvh] w-full flex flex-col p-6 md:p-16 box-border antialiased">
+
+    <!-- Header -->
+    <header class="flex flex-col">
+        <a href="/" class="inline-block hover:opacity-60 transition-opacity duration-300 w-max">
+            <h1 class="text-xl md:text-2xl font-medium tracking-wide text-ink">Andrew Galdys</h1>
+        </a>
+        <a href="/research" class="text-xs md:text-sm text-charcoal mt-1 tracking-widest uppercase hover:text-ink transition-colors duration-300 w-max">&larr; Research</a>
+    </header>
+
+    <!-- Article -->
+    <main class="flex-grow w-full max-w-2xl mx-auto py-12 md:py-20">
+        <article>
+            <div class="flex items-center space-x-3 text-xs text-charcoal tracking-widest uppercase">
+                <span>October 2026</span>
+                <span>&middot;</span>
+                <span>Multifamily</span>
+                <span>&middot;</span>
+                <span class="border border-ink/20 rounded-full px-2 py-0.5 normal-case tracking-wide">Sample</span>
+            </div>
+
+            <h2 class="mt-4 text-3xl md:text-5xl font-medium tracking-tight text-ink leading-tight">
+                Deal Teardown: Reverse-Engineering a Multifamily Trade
+            </h2>
+
+            <p class="mt-6 text-sm md:text-base text-charcoal tracking-wide leading-relaxed border-l-2 border-ink/20 pl-4">
+                Sample layout. This page shows how each post is structured. The text below is placeholder content, not a real transaction.
+            </p>
+
+            <div class="mt-10 space-y-10 text-base md:text-lg leading-relaxed text-ink">
+
+                <section>
+                    <h3 class="text-xs md:text-sm text-charcoal tracking-widest uppercase mb-3">The deal</h3>
+                    <p>
+                        Two sentences orienting the reader: the asset, the market, the price, the buyer and seller, and a link to the original source. Enough that someone who never saw the news can follow what comes next.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 class="text-xs md:text-sm text-charcoal tracking-widest uppercase mb-3">What stood out</h3>
+                    <p>
+                        The one thing about the capital structure that caught my attention, stated up front. For example: the loan type, the leverage, the term, or the gap between the price paid and what the in-place income supports.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 class="text-xs md:text-sm text-charcoal tracking-widest uppercase mb-3">Why it was likely structured this way</h3>
+                    <p>
+                        My read on what the sponsor was trying to accomplish, built from public records and clearly labeled as inference where the numbers are not reported. Reported figures and my estimates are always kept separate.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 class="text-xs md:text-sm text-charcoal tracking-widest uppercase mb-3">What you would need to believe</h3>
+                    <p>
+                        The assumptions that make the deal work: rent growth, exit cap rate, and the rate path. A short sensitivity table shows which one breaks the returns first.
+                    </p>
+
+                    <div class="mt-6 overflow-x-auto">
+                        <table class="w-full text-sm md:text-base border-collapse">
+                            <thead>
+                                <tr class="text-left text-xs text-charcoal tracking-widest uppercase">
+                                    <th class="py-3 pr-4 font-normal border-b border-ink/20">Exit cap</th>
+                                    <th class="py-3 px-4 font-normal border-b border-ink/20">Low rent growth</th>
+                                    <th class="py-3 px-4 font-normal border-b border-ink/20">Base case</th>
+                                    <th class="py-3 pl-4 font-normal border-b border-ink/20">High rent growth</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-charcoal">
+                                <tr><td class="py-3 pr-4 border-b border-ink/10">&minus;25 bps</td><td class="py-3 px-4 border-b border-ink/10">&mdash;</td><td class="py-3 px-4 border-b border-ink/10">&mdash;</td><td class="py-3 pl-4 border-b border-ink/10">&mdash;</td></tr>
+                                <tr><td class="py-3 pr-4 border-b border-ink/10">Base</td><td class="py-3 px-4 border-b border-ink/10">&mdash;</td><td class="py-3 px-4 border-b border-ink/10">&mdash;</td><td class="py-3 pl-4 border-b border-ink/10">&mdash;</td></tr>
+                                <tr><td class="py-3 pr-4 border-b border-ink/10">+25 bps</td><td class="py-3 px-4 border-b border-ink/10">&mdash;</td><td class="py-3 px-4 border-b border-ink/10">&mdash;</td><td class="py-3 pl-4 border-b border-ink/10">&mdash;</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="mt-3 text-xs md:text-sm text-charcoal tracking-wide">Levered IRR sensitivity. Values to be filled in.</p>
+                </section>
+
+                <section>
+                    <h3 class="text-xs md:text-sm text-charcoal tracking-widest uppercase mb-3">Verdict</h3>
+                    <p>
+                        Would I have done this deal, and what is the main risk? Every post takes a position.
+                    </p>
+                </section>
+
+            </div>
+
+            <!-- Related model -->
+            <a href="/models-multifamily-acquisition" class="group block mt-14 border border-ink/10 rounded-lg p-5 md:p-6 hover:border-ink/30 transition-colors duration-300">
+                <p class="text-xs text-charcoal tracking-widest uppercase">Related model</p>
+                <p class="mt-2 text-lg md:text-xl font-medium tracking-tight text-ink group-hover:opacity-50 transition-opacity duration-300">
+                    Multifamily Acquisition Model (Sample) &rarr;
+                </p>
+            </a>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="flex flex-col-reverse md:flex-row justify-between items-start md:items-end text-xs md:text-sm text-charcoal w-full gap-y-4">
+        <div class="flex flex-row space-x-6">
+            <a href="/research" class="hover:text-ink hover:underline underline-offset-4 transition-all duration-300 tracking-wide">All Research</a>
+            <a href="/" class="hover:text-ink hover:underline underline-offset-4 transition-all duration-300 tracking-wide">Home</a>
+            <a href="mailto:andrewgaldys.inbox@gmail.com" class="hover:text-ink hover:underline underline-offset-4 transition-all duration-300 tracking-wide">Email</a>
+        </div>
+    </footer>
+
+</body>
+</html>
